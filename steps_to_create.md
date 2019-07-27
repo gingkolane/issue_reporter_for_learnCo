@@ -1,12 +1,10 @@
 1. rails new issue-reporting-api --api --database=postgresql
 
-2. upload the git repo in github, add .gitignore
+2. create rails new git repo in github, clone to local
 
-3. Follow instructions on learn.co to create a rails api backend
-
+3. set up cors
+  uncomement cors gem in gemfile, uncomment cors section in config/initializers/cors.rb, 
   https://learn.co/tracks/web-development-immersive-3-1-module-three/front-end-web-programming/rails-as-an-api/creating-a-rails-api-from-scratch
-
-  (update on cors from above: the file to modify is in config/initializers/cors.rb)
 
 4. Additional gems
   - octokit for github api: in gemfile and config/application.rb
@@ -17,12 +15,11 @@
 
 5. create resource scaffold(note api only)
 
-rails g scaffold repo name github_repo_id:integer name full_name url html_url read_me pulls_count:integer forks_count:integer network_count:integer parent source --no-test-framework
+rails g scaffold repo github_repo_id:integer name full_name url html_url readme pulls_count:integer forks_count:integer network_count:integer parent source --no-test-framework
 
-rails g scaffold user github_user_id:integer login role karma avatar_url url html_url  repos_url --no-test-framework
+rails g scaffold user learnco_username learnco_password cohort github_user_id:integer login role karma avatar_url url html_url  repos_url --no-test-framework
 
-rails g scaffold survey repo:references user:references completion_status incompleteReason
-issueType problemAnalysis suggestedFix --no-test-framework
+rails g scaffold survey repo:references user:references completion_status incompleteReason issueType problemAnalysis suggestedFix --no-test-framework
 
 
 6. create database and link data
@@ -31,36 +28,23 @@ issueType problemAnalysis suggestedFix --no-test-framework
   * `bundle`
   * `rails db:create`
   * `rails db:migrate`
-  * `rails db:seed`
+  <!-- * `rails db:seed` -->
   * `rails s`
 
-7. copy and paste data in the navicat database
+7. create seed data in the navicat database
   https://api.github.com/search/users?q=octocat
 
-8. Take bookliker index.html for MVP
+------------------
 
-9. To-do list for index.js
+Create front-end react app
 
-Lab views
-<!-- 1. show repo title in list-panel -->
-<!-- 2. show single repo view in show-panel -->
+1. npx create-react-app issue-reporting-frontend
+2. Add "react-router-dom": "^5.0.1" below "react-dom" in package.json
+3. npm install
+4. rails server in -api/ npm start
 
-Completion
-3. form for completion status (create)
-4. Change incomplete to complete
-
-
-Overall completion on this lab
-
-10. update field name in completion table
-
-rails g migration AddColumnsToCompletion incompleteReason issueType problemAnalysis suggestedFix status:integer
-
-rails g migration AddColumnsToUser karma:integer
-
-11. Manually add data to three tables in Navicat.
-
-
+front-end setup:
+1. set up browserRouter in index.js
 
 
 Notes:
@@ -100,9 +84,7 @@ in headers:
 related repo information I need: 
 
 
-
  "pulls_url": "http://api.github.com/repos/octocat/Hello-World/
- 
  
  
  pulls{/number}"
@@ -146,3 +128,5 @@ source:
 parent_url: 
 https://api.github.com/learn-co-students/react-props-movie-lab
 
+
+https://api.github.com/repos/learn-co-students/react-components-as-routes-dumbo-web-051319
