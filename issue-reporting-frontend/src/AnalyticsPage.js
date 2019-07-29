@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
+import { Grid, Divider } from 'semantic-ui-react'
 import TopNav from "./containers/TopNav";
 import GraphicsContainer from "./containers/GraphicsContainer";
-import Table from "./components/Table";
+import AllReposTable from "./components/AllReposTable";
 
 class AnalyticsPage extends Component {
   
   render() { 
     return ( 
       <>
-        <h1>Hi from analytics page</h1>
         <TopNav/>
-        <GraphicsContainer />
-        <Table />
+        <Grid celled>
+          <Grid.Row>
+            <Grid.Column width={16}>
+              <GraphicsContainer />
+            </Grid.Column>
+            
+            <Grid.Column width={16}>
+              <AllReposTable />
+            </Grid.Column>
+
+          </Grid.Row>
+        </Grid>
       </>
      );
   }
