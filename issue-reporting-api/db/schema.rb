@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_26_201631) do
+ActiveRecord::Schema.define(version: 2019_07_30_101040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,13 +22,12 @@ ActiveRecord::Schema.define(version: 2019_07_26_201631) do
     t.string "url"
     t.string "html_url"
     t.string "readme"
-    t.integer "pulls_count"
     t.integer "forks_count"
-    t.integer "network_count"
     t.string "parent"
     t.string "source"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "open_issues_count"
   end
 
   create_table "surveys", force: :cascade do |t|
@@ -59,6 +58,7 @@ ActiveRecord::Schema.define(version: 2019_07_26_201631) do
     t.string "repos_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avartar_url"
   end
 
   add_foreign_key "surveys", "repos"

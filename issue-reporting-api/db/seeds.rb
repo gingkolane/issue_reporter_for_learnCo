@@ -1,7 +1,39 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+Survey.destroy_all
+User.destroy_all
+Repo.destroy_all
+
+client = Octokit::Client.new(:access_token => 'eeae13544e7e1690311ed39afd7ed2c8ccb98916')
+# repos = client.org_repos('learn-co-students')
+# users = client.org_public_members('learn-co-students', per_page: 1000)
+
+# Get all the repos of the organization learn-co-students
+repos = Octokit.repos('learn-co-students', per_page: 100)
+
+# repos = Octokit.all_repositories('learn-co-students')
+
+repos.each do |repo|
+  Repo.create(github_repo_id: repo.id, name: repo.name, forks_count: repo.forks_count, open_issues_count: repo.open_issues_count )
+end
+
+# # -----------
+
+
+# Get all the members of learn-co-students organization
+users = Octokit.org_public_members('learn-co-students', per_page: 1000)
+
+users.each do |user|
+  User.create(github_user_id: user.id, login: user.login, role: 'student', avartar_url: user.avartar_url )
+end
+
+# ---------------------
+
+
+repo_collect = Repo.take(100)
+user_collect = User.take(100)
+option1 = ['A', 'B', 'C']
+option2 = [0, 1]
+
+500.times do 
+  Survey.create(repo_id: repo_collect.sample.id, user_id: user_collect.sample.id, completion_status: option2.sample, incompleteReason: option1.sample, issueType: option1.sample )
+end 

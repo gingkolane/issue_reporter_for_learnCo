@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Dropdown, Menu } from 'semantic-ui-react'
+import logo from '../assets/logo.svg'
+import search from '../assets/search.png'
+import friends from '../assets/friends.png'
 
 export default class TopNav extends Component {
   state = {}
@@ -11,7 +14,9 @@ export default class TopNav extends Component {
 
     return (
       <Menu>
-        <Menu.Item>Logo</Menu.Item>
+        <Menu.Item>
+          <img src={logo} alt="logo" />
+        </Menu.Item>
         <Dropdown text='Curriculum' pointing className='link item'>
           <Dropdown.Menu>
             <Dropdown.Item>Schedule</Dropdown.Item>
@@ -37,11 +42,11 @@ export default class TopNav extends Component {
         <Menu.Menu position='right'>
 
           <Menu.Item name='search'>
-            Search
+            <img src={search} alt="search" />
           </Menu.Item>
 
           <Menu.Item name='friends'>
-            Friends
+            <img src={friends} alt="friends" />
           </Menu.Item>
 
           <Menu.Item name='dm'>
@@ -49,7 +54,7 @@ export default class TopNav extends Component {
           </Menu.Item>
 
           <Menu.Item name='karma' active={activeItem === 'karma'} onClick={this.handleItemClick}>
-            Karma
+            Karma 0
           </Menu.Item>
 
           <Menu.Item name='user' active={activeItem === 'user'} onClick={this.handleItemClick}>

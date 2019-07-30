@@ -16,11 +16,9 @@ class RepoContainer extends Component {
   }
 
   render() { 
-    console.log("this is this.state.readme.content in repoContainer before rendering", this.state.readme.content)
+
     const content = this.state.readme.content;
     const title = this.props.repo.name 
-    // const decoded_content = atob(content)
-    // console.log('this is decoded content', decoded_content);
 
     return(
       <>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Divider, Segment, Portal, Header} from 'semantic-ui-react'
+import { Segment, Portal, Header} from 'semantic-ui-react'
 // import NextLesson from '../components/NextLesson';
 import SurveyForm from '../components/SurveyForm.js'
 
@@ -11,10 +11,7 @@ class SidBarRight extends Component {
   handleOpen = () => this.setState({ open: true })
 
   handleClose = () => {
-    
-
-
-
+  
     this.setState({ open: false })
   }
 
@@ -48,11 +45,11 @@ class SidBarRight extends Component {
               <p>Please tell us why you did not complete this lab:</p>
               <SurveyForm />
 
-              <Button
-                content='Proceed'
+              {/* <Button
+                content='Nevermind'
                 negative
                 onClick={this.handleClose}
-              />
+              /> */}
             </Segment>
           </Portal>
       </>

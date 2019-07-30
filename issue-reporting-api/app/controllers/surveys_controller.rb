@@ -16,7 +16,7 @@ class SurveysController < ApplicationController
   # POST /surveys
   def create
     @survey = Survey.new(survey_params)
-
+    # byebug
     if @survey.save
       render json: @survey, status: :created, location: @survey
     else
@@ -46,6 +46,6 @@ class SurveysController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def survey_params
-      params.require(:survey).permit(:repo_id, :user_id, :completion_status, :incompleteReason, :issueType, :problemAnalysis, :suggestedFix)
+      params.permit(:repo_id, :user_id, :completion_status, :incompleteReason, :issueType, :problemAnalysis, :suggestedFix)
     end
 end

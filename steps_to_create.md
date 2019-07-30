@@ -43,6 +43,11 @@ Create front-end react app
 3. npm install
 4. rails server in -api/ npm start
 
+To use zingChart-react we need to npm install the following;
+npm install typescript
+npm install zingchart-react
+npm install zingchart
+
 front-end setup:
 1. set up browserRouter in index.js
 
@@ -130,3 +135,42 @@ https://api.github.com/learn-co-students/react-props-movie-lab
 
 
 https://api.github.com/repos/learn-co-students/react-components-as-routes-dumbo-web-051319
+
+
+Get a access token
+
+settings/developer settings/personal access tokens
+
+github access token of learnCoStudentReporter for issue-reporting-app
+
+eeae13544e7e1690311ed39afd7ed2c8ccb98916
+
+
+
+# https://api.github.com/repos/rails/rails
+# https://api.github.com/repos/octocat/Hello-World
+
+# user      = client.user 'andrewpthorp'
+# response  = client.last_response
+# etag      = response.headers[:etag]
+
+<!-- Code for show all birds -->
+
+<h1>Birds</h1>
+ 
+<ul>
+<% @birds.each do |bird| %>
+    <li><%= bird.name %> - <%= bird.species %></li>
+<% end %>
+</ul>
+
+The other user is learn-co-curriculum, this is the account to track 
+
+There are many students who gave good suggestions for fixing
+
+Issues reporting comments on learn-co-curriculum is very good. 
+See this example
+https://github.com/learn-co-curriculum/react-forms-lab/issues/26
+
+
+!!!need to create a issues table and get data on issues in learn-co-curriculum

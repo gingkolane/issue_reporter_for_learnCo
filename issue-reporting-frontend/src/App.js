@@ -1,22 +1,34 @@
 import React, { Component } from 'react'
-import RepoPage from './RepoPage'
-import AnalyticsPage from './AnalyticsPage'
-import LoginPage from './LoginPage'
 import { Switch, Route } from 'react-router-dom'
 import './App.css'
 
+import RepoPage from './RepoPage'
+import AnalyticsPage from './AnalyticsPage'
+import SurveySummaryPage from './SurveySummaryPage'
+import LoginPage from './LoginPage'
+
+
 class App extends Component {
+
   state = {
-    repo: ''
+    repos: [],
+    users: [],
+    surveys: []
   }
 
   componentDidMount() {
 
-    fetch("https://api.github.com/repos/learn-co-students/React-Stocks-dumbo-web-051319")
+    fetch("http://localhost:3000/repos")
     .then(resp => resp.json())
-    .then(repo => this.setState({ repo: repo }))
+    .then(repos => this.setState({ repos: repos }))
 
-    // .then(repo => this.setState({ repo: repo }))
+    fetch("http://localhost:3000/users")
+    .then(resp => resp.json())
+    .then(users => this.setState({ users: users }))
+
+    fetch("http://localhost:3000/surveys")
+    .then(resp => resp.json())
+    .then(surveys => this.setState({ surveys: surveys}))
 
     // if (localStorage.token) {
     //   fetch('http://localhost:3000/profile', {
@@ -38,8 +50,35 @@ class App extends Component {
     return (
       <Switch>
         <Route path="/login" component={LoginPage} />
-        <Route path="/repo" render={(routerProps) => <RepoPage {...routerProps} repo={this.state.repo} />} />
-        <Route path="/analytics" render={(routerProps) => <AnalyticsPage {...routerProps} username={this.state.username} />} />
+        <Route path="/repo" 
+          render={ (routerProps) => 
+          <RepoPage {...routerProps} 
+            repos={this.state.repos} 
+            users={this.state.users} 
+            surveys = {this.state.surveys} />
+          } />
+
+        <Route exact path="/analytics/1" 
+          render = {(routerProps) => 
+          <SurveySummaryPage 
+            {...routerProps} 
+            repos={this.state.repos} 
+            users={this.state.users} 
+            surveys = {this.state.surveys} 
+          /> 
+          }
+        />
+
+        <Route path="/analytics" 
+          render={(routerProps) => 
+          <AnalyticsPage 
+          {...routerProps} 
+          repos={this.state.repos} 
+          users={this.state.users}
+          surveys = {this.state.surveys} 
+         />
+        } 
+        />
       </Switch>
     )
   }

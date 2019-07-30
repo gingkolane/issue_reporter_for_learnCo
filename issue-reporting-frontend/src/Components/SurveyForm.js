@@ -10,9 +10,14 @@ class SurveyForm extends Component {
     suggestedFix:''
    }
 
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-   }
+  // handleChange = (e) => {
+  //   debugger
+  //   this.setState({ [e.target.name]: e.target.value });
+  //  }
+
+  // handleChange = (e, { value }) => this.setState({ [e.target.name]: value })
+
+  handleChange = (e, data) => this.setState({ [data.name]: data.value })
 
   handleSubmit = (e) => {
 
@@ -24,17 +29,39 @@ class SurveyForm extends Component {
         'Content-Type': 'application/json',
         'Accepted': 'application/json'
       },
-      body: {
+      body: JSON.stringify({ 
+        survey: {
+        repo_id: 1,
+        user_id: 3,
+        completion_status: 0,
         incompleteReason: this.state.incompleteReason,
         issueType: this.state.issueType,
         problemAnalysis: this.state.problemAnalysis,
         suggestedFix: this.state.suggestedFix
-      }
+      }})
     })
+
+    // redirect to the next repo page
+    // this.props.history.push('/repo')
   }
 
+  // redirect to next lesson
   render() { 
+    
+    // state = {
+    //   value: "hi"
+    // }
+    
+    // // const value = this.state.value
     // const { value } = this.state
+
+
+    // const array = [23, 44]
+    // const firstElement = array[0]
+    // const secondElement = array[1]
+    // const [ firstElement, secondElement ] = array
+
+
     return (  
       <Form onSubmit={this.handleSubmit}>
   
@@ -43,28 +70,28 @@ class SurveyForm extends Component {
           <Form.Radio
             name='incompleteReason'
             label="A. Too many labs today, don't have time to complete everything, just want to browse through."
-            value='A'
+            value="A"
             checked={this.state.incompleteReason === 'A'}
             onChange={this.handleChange}
           />
           <Form.Radio
             name='incompleteReason'
             label="B. Spent a long time on it but can't finish.."
-            value='B'
+            value="B"
             checked={this.state.incompleteReason === 'B'}
             onChange={this.handleChange}
           />
           <Form.Radio
             name='incompleteReason'
             label="C. I can't finish it because there is a bug in this lab."
-            value='C'
+            value="C"
             checked={this.state.incompleteReason === 'C'}
             onChange={this.handleChange}
           />
           <Form.Radio
             name='incompleteReason'
             label="D. Other."
-            value='D'
+            value="D"
             checked={this.state.incompleteReason === 'D'}
             onChange={this.handleChange}
           />
@@ -86,7 +113,7 @@ class SurveyForm extends Component {
             checked={this.state.issueType === 'B'}
             onChange={this.handleChange}
           />
-          <Form.TextArea name='problemAnalysis' rows='1' onChange={this.handleChange} />
+          <Form.TextArea name='problemAnalysis' rows='1' value={this.state.problemAnalysis}  onChange={this.handleChange} />
 
           <Form.Radio
             name='issueType'
@@ -95,7 +122,7 @@ class SurveyForm extends Component {
             checked={this.state.issueType === 'C'}
             onChange={this.handleChange}
           />
-          <Form.TextArea name='suggestedFix' rows='1' onChange={this.handleChange} />
+          <Form.TextArea name='suggestedFix' value={this.state.suggestedFix} rows='1' onChange={this.handleChange} />
       </Form.Group>
   
       <Form.Button>Submit</Form.Button>
