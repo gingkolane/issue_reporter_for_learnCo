@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Segment, Portal, Header} from 'semantic-ui-react'
-// import NextLesson from '../components/NextLesson';
 import SurveyForm from '../components/SurveyForm.js'
 
 

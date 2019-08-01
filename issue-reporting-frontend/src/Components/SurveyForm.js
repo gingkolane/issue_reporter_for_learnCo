@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 
 class SurveyForm extends Component {
   
@@ -10,19 +11,13 @@ class SurveyForm extends Component {
     suggestedFix:''
    }
 
-  // handleChange = (e) => {
-  //   debugger
-  //   this.setState({ [e.target.name]: e.target.value });
-  //  }
-
-  // handleChange = (e, { value }) => this.setState({ [e.target.name]: value })
-
+  //semantic ui onClick comes with data that includes all the props
   handleChange = (e, data) => this.setState({ [data.name]: data.value })
 
   handleSubmit = (e) => {
-
     e.preventDefault();
 
+    //post new survey to the database
     fetch("http://localhost:3000/surveys", {
       method: 'POST',
       headers: {
@@ -30,7 +25,6 @@ class SurveyForm extends Component {
         'Accepted': 'application/json'
       },
       body: JSON.stringify({ 
-        survey: {
         repo_id: this.props.currentRepo.id,
         user_id: this.props.currentUser.id,
         completion_status: 0,
@@ -38,35 +32,26 @@ class SurveyForm extends Component {
         issueType: this.state.issueType,
         problemAnalysis: this.state.problemAnalysis,
         suggestedFix: this.state.suggestedFix
-      }})
+      })
     })
  
-      if (this.state.suggestedFix !== '') {
+    //increase Karma count
+    if (this.state.suggestedFix !== '') {
       this.props.increaseKarmaCount();
     }
 
-    this.props.history.push('/repo')
+    // redirect to next lesson
+    this.props.history.push('/repo');
 
-    // redirect to the next repo page
-    // this.props.history.push('/repo')
+    //Close the portal window
+    // this.props.handleClose();
   }
 
-  // redirect to next lesson
+  
   render() { 
-    
-    // state = {
-    //   value: "hi"
-    // }
-    
-    // // const value = this.state.value
-    // const { value } = this.state
 
-
-    // const array = [23, 44]
-    // const firstElement = array[0]
-    // const secondElement = array[1]
-    // const [ firstElement, secondElement ] = array
-
+    console.log("currentRepo in surveyform", this.props.currentRepo.id)
+    console.log("currentUser in surveyform", this.props.currentUser.id)
 
     return (  
       <Form onSubmit={this.handleSubmit}>
@@ -96,7 +81,7 @@ class SurveyForm extends Component {
           />
           <Form.Radio
             name='incompleteReason'
-            label="D. Other."
+            label="D. I don't know how to do this lab."
             value="D"
             checked={this.state.incompleteReason === 'D'}
             onChange={this.handleChange}
@@ -138,4 +123,4 @@ class SurveyForm extends Component {
   }
 }
  
-export default SurveyForm;
+export default withRouter(SurveyForm);

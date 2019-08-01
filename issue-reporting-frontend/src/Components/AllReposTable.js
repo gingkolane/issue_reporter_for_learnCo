@@ -9,7 +9,7 @@ class AllReposTable extends Component {
     //grab the repo_id the repo selected using dataset set up in the Table.call
     let repoid = parseInt(e.target.dataset.repoid)
     this.props.handleTableRepoClick(repoid)
-    this.props.history.push('/analytics/1')
+    // this.props.history.push('/analytics/survey')
   }
 
   render() { 
@@ -37,7 +37,7 @@ class AllReposTable extends Component {
 
     return(
       <>
-      <h1>Hi from Table</h1>
+      <h2>Lab completion data</h2>
       <Table celled structured textAlign='center'>
       <Table.Header>
         <Table.Row>

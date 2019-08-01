@@ -174,3 +174,17 @@ https://github.com/learn-co-curriculum/react-forms-lab/issues/26
 
 
 !!!need to create a issues table and get data on issues in learn-co-curriculum
+
+
+    // state = {
+    //   value: "hi"
+    // }
+    
+    // // const value = this.state.value
+    // const { value } = this.state
+
+
+    // const array = [23, 44]
+    // const firstElement = array[0]
+    // const secondElement = array[1]
+    // const [ firstElement, secondElement ] = array

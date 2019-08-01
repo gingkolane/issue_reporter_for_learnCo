@@ -10,10 +10,7 @@ class GraphicsContainer extends Component {
     height: 300,
     id: 'bar-chart'
   }
-  // const forked = this.props.repos.map(repo => repo.forks_count);
-  // const completed = this.props.repos.map(repo => repo.open_issues_count);
-  // const incomplete = this.props.repos.map(repo => parseInt(repo.forks_count) - parseInt(repo.open_issues_count));
-
+  
   // componentDidMount () {
   //   fetch("http://localhost:3000/data")
   //   .then(resp => resp.json())
@@ -24,7 +21,7 @@ class GraphicsContainer extends Component {
   render() { 
     return ( 
       <>
-      <h1>Hi from the GraphicsContainer</h1>
+      <h3>Percentage of lab completed</h3>
       <BarChart repos = {this.props.repos} width={this.state.width} height={this.state.height}/>
       </>
      )

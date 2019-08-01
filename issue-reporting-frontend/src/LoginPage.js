@@ -1,20 +1,3 @@
-// import React, { Component } from 'react';
-
-// class LoginPage extends Component {
-  
-//   render() { 
-//     return ( 
-//       <>
-//         <h1>Hi from Login Page</h1>
-//         <p>if user is a student, go to the repo page</p>
-//         <p>if user is SCC, go to analytics page</p>
-//       </>
-//      );
-//   }
-// }
- 
-// export default LoginPage;
-
 import React from 'react'
 import { Button, Form, Grid, Image, Message, Segment } from 'semantic-ui-react'
 import loginheader from './assets/loginheader.png'

@@ -2,21 +2,19 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import './stylesheets/App.css'
 
-import RepoPage from './RepoPage'
-import RepoAnalyticsPage from './RepoAnalyticsPage'
-import SurveyAnalyticsPage from './SurveyAnalyticsPage'
 import LoginPage from './LoginPage'
-import SurveyForm from './components/SurveyForm'
-import AllReposTable from './components/AllReposTable'
+import RepoPage from './RepoPage'
+import AnalyticsPage from './AnalyticsPage'
+import TopNavContainer from "./containers/TopNavContainer";
 
 class App extends Component {
 
   state = {
     repos: [],
-    users: [], 
+    users: [],
     surveys: [],
     currentUser: {},
-    surveyCollection: []
+    currentRepo: {}
   }
 
   componentDidMount() {
@@ -37,11 +35,15 @@ class App extends Component {
     .then(surveys => this.setState({ surveys: surveys }))
   }
 
+  handleTopNavRepoClick = (repoid) => {
+    let clickedRepo = this.state.repos.find(repo => repo.github_repo_id === repoid)
+    this.setState({ currentRepo: clickedRepo });
+  }
+
   increaseKarmaCount= () => {
-    let currentKarmaCount = this.state.currentUser.karma;
+    let currentKarmaCount = parseInt(this.state.currentUser.karma);
     let updatedKarmaCount = currentKarmaCount + 1;
 
-    console.log("this.state.currentUser", this.state.currentUser);
     fetch("http://localhost:3000/users/792", {
     // fetch(`http://localhost:3000/users/${this.props.currentUser.id}`, {
       method: 'PATCH', 
@@ -57,25 +59,25 @@ class App extends Component {
     .then(user => this.setState({ curentUser: user }))
   }
 
-  handleTableRepoClick = (repoid) => {
-    let surveysForClickedRepo = this.state.surveys.filter(survey => survey.repo_id === repoid)
-    this.setState({ surveyCollection: surveysForClickedRepo });
-  }
-
   render () {
     return (
+      <>
+      <TopNavContainer
+        repos={this.state.repos} //for curriculum dropdown
+        handleTopNavRepoClick={this.handleTopNavRepoClick}  // handle dropdown click
+        currentUser={this.state.currentUser}  //for login
+      />
+
       <Switch>
         <Route exact path="/" component={LoginPage} />
         
-        <Route path="/repo" render={ (routerProps) => <RepoPage {...routerProps} repos={this.state.repos} currentUser={this.state.currentUser} increaseKarmaCount={this.increaseKarmaCount}/> } />
-          <Route path="/repo/survey" render = {(routerProps) => <SurveyForm  {...routerProps} increaseKarmaCount={this.props.increaseKarmaCount} currentUser={this.props.currentUser} currentRepo={this.props.currentRepo}/> }/>
+        <Route path="/repo" render={ (routerProps) => <RepoPage {...routerProps} repos={this.state.repos} currentUser={this.state.currentUser} currentRepo={this.state.currentRepo} increaseKarmaCount={this.increaseKarmaCount}/> } />
         
-        <Route path="/analytics/repos" render={(routerProps) => <RepoAnalyticsPage {...routerProps} repos={this.state.repos} currentUser={this.state.currentUser} handleTableRepoClick={this.handleTableRepoClick}/> }/>
-          <Route path="/analytics/repos/table" render = {(routerProps) => <AllReposTable {...routerProps} repos={this.props.repos} surveys={this.props.surveys} handleTableRepoClick={this.props.handleTableRepoClick}/> }/>
-        
-        <Route path="/analytics/surveys" render = {(routerProps) => <SurveyAnalyticsPage {...routerProps} repos={this.state.repos} users={this.state.users} surveyCollection={this.state.surveyCollection}/> }/>
+        <Route path="/analytics" render = {(routerProps) => <AnalyticsPage {...routerProps} repos={this.state.repos} users={this.state.users} surveys={this.state.surveys} currentUser={this.state.currentUser} currentRepo={this.state.currentRepo} /> }/>
       
       </Switch>
+      
+      </>
     )
   }
 }

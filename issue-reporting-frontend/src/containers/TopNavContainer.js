@@ -6,13 +6,13 @@ import friends from '../assets/friends.png'
 
 export default class TopNavContainer extends Component {
 
-  handleRepoClick = (e, data) => {
-    this.props.handleRepoClick(data.id);
+  handleTopNavRepoClick = (e, data) => {
+    this.props.handleTopNavRepoClick(data.id);
   }
 
   render() {
     const displayOneRepoTitle = this.props.repos.slice(0,10).map(repo => 
-      <Dropdown.Item id={repo.github_repo_id} key={repo.github_repo_id} onClick={this.handleRepoClick}> {repo.name} </Dropdown.Item>
+      <Dropdown.Item id={repo.github_repo_id} key={repo.github_repo_id} onClick={this.handleTopNavRepoClick}> {repo.name} </Dropdown.Item>
     )
 
     return (
@@ -37,8 +37,9 @@ export default class TopNavContainer extends Component {
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Item>Assignments</Menu.Item>
+        <Menu.Item>Analysis</Menu.Item>
         <Menu.Item>Help</Menu.Item>
-
+        
         <Menu.Menu position='right'>
 
           <Menu.Item name='search'>
