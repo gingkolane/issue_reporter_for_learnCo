@@ -41,10 +41,11 @@ class SurveyForm extends Component {
     }
 
     // redirect to next lesson
-    this.props.history.push('/repo');
+    // this.props.history.push('/repo');
+    this.props.goToNextRepo();
 
     //Close the portal window
-    // this.props.handleClose();
+    this.props.handleClose();
   }
 
   

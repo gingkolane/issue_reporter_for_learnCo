@@ -46,6 +46,8 @@ class SidBarRightContainer extends Component {
                 increaseKarmaCount={this.props.increaseKarmaCount} 
                 currentUser={this.props.currentUser} 
                 currentRepo={this.props.currentRepo}
+                goToNextRepo={this.props.goToNextRepo}
+                handleClose={this.handleClose}
               />
 
               {/* <Button

@@ -10,12 +10,16 @@ class ReposController < ApplicationController
     data = Repo.all.map { |repo| 
       {
         "repo_name" => repo.name,
-        "percent_incomplete" => (repo.forks_count - repo.open_issues_count)/repo.forks_count,
+        "percent_incomplete" => (repo.forks_count - repo.open_issues_count)/repo.forks_count*100,
         "percent_incompleteColor" => "hsl(169, 70%, 50%)"
       }
     }
     render json: data
   end
+
+    def survey_result
+      # result = Repo.
+    end 
 
   # GET /repos/1
   def show

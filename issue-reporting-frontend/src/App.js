@@ -56,7 +56,16 @@ class App extends Component {
       })
     })
     .then(resp => resp.json())
-    .then(user => this.setState({ curentUser: user }))
+    .then(user => this.setState({ currentUser: user }))
+
+
+  }
+
+  goToNextRepo = () => {
+    const idx = this.state.repos.indexOf(this.state.currentRepo) + 1
+    this.setState({
+      currentRepo: this.state.repos[idx]
+    })
   }
 
   render () {
@@ -71,7 +80,7 @@ class App extends Component {
       <Switch>
         <Route exact path="/" component={LoginPage} />
         
-        <Route path="/repo" render={ (routerProps) => <RepoPage {...routerProps} repos={this.state.repos} currentUser={this.state.currentUser} currentRepo={this.state.currentRepo} increaseKarmaCount={this.increaseKarmaCount}/> } />
+        <Route path="/repo" render={ (routerProps) => <RepoPage {...routerProps} goToNextRepo={this.goToNextRepo} repos={this.state.repos} currentUser={this.state.currentUser} currentRepo={this.state.currentRepo} increaseKarmaCount={this.increaseKarmaCount}/> } />
         
         <Route path="/analytics" render = {(routerProps) => <AnalyticsPage {...routerProps} repos={this.state.repos} users={this.state.users} surveys={this.state.surveys} currentUser={this.state.currentUser} currentRepo={this.state.currentRepo} /> }/>
       

@@ -32,6 +32,7 @@ class RepoPage extends Component {
                 currentRepo={this.props.currentRepo} 
                 currentUser={this.props.currentUser} 
                 history={this.props.history}
+                goToNextRepo={this.props.goToNextRepo}
               />
             </Grid.Column>
 

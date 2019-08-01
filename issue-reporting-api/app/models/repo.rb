@@ -13,6 +13,15 @@ class Repo < ApplicationRecord
   end
 
 
+  def incomplete_reason_count
+    hash = Hash.new(0)
+
+    repo.surveys.each do |survey|
+      hash[survey.incompleteReason] += 1
+    end 
+
+  end 
+
 end
 
 
