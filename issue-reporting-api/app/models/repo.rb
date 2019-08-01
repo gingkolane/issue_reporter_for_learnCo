@@ -12,6 +12,7 @@ class Repo < ApplicationRecord
     issues = client.issues "learn-co-students/#{repo.name}"
   end
 
+
 end
 
 

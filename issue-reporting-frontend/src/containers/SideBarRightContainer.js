@@ -4,7 +4,7 @@ import { Segment, Portal, Header} from 'semantic-ui-react'
 import SurveyForm from '../components/SurveyForm.js'
 
 
-class SidBarRight extends Component {
+class SidBarRightContainer extends Component {
   
   state = { open: false }
 
@@ -43,7 +43,11 @@ class SidBarRight extends Component {
             >
               <Header>Proceed to next lesson?</Header>
               <p>Please tell us why you did not complete this lab:</p>
-              <SurveyForm />
+              <SurveyForm
+                increaseKarmaCount={this.props.increaseKarmaCount} 
+                currentUser={this.props.currentUser} 
+                currentRepo={this.props.currentRepo}
+              />
 
               {/* <Button
                 content='Nevermind'
@@ -57,4 +61,4 @@ class SidBarRight extends Component {
   }
 }
  
-export default SidBarRight;
+export default SidBarRightContainer;

@@ -31,8 +31,8 @@ class SurveyForm extends Component {
       },
       body: JSON.stringify({ 
         survey: {
-        repo_id: 1,
-        user_id: 3,
+        repo_id: this.props.currentRepo.id,
+        user_id: this.props.currentUser.id,
         completion_status: 0,
         incompleteReason: this.state.incompleteReason,
         issueType: this.state.issueType,
@@ -40,6 +40,12 @@ class SurveyForm extends Component {
         suggestedFix: this.state.suggestedFix
       }})
     })
+ 
+      if (this.state.suggestedFix !== '') {
+      this.props.increaseKarmaCount();
+    }
+
+    this.props.history.push('/repo')
 
     // redirect to the next repo page
     // this.props.history.push('/repo')

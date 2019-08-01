@@ -4,13 +4,16 @@ import logo from '../assets/logo.svg'
 import search from '../assets/search.png'
 import friends from '../assets/friends.png'
 
-export default class TopNav extends Component {
-  state = {}
+export default class TopNavContainer extends Component {
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleRepoClick = (e, data) => {
+    this.props.handleRepoClick(data.id);
+  }
 
   render() {
-    const { activeItem } = this.state
+    const displayOneRepoTitle = this.props.repos.slice(0,10).map(repo => 
+      <Dropdown.Item id={repo.github_repo_id} key={repo.github_repo_id} onClick={this.handleRepoClick}> {repo.name} </Dropdown.Item>
+    )
 
     return (
       <Menu>
@@ -24,10 +27,7 @@ export default class TopNav extends Component {
             <Dropdown.Item>
               <Dropdown text='React Labs'>
                 <Dropdown.Menu>
-                  <Dropdown.Item>Shirts</Dropdown.Item>
-                  <Dropdown.Item>Pants</Dropdown.Item>
-                  <Dropdown.Item>Jeans</Dropdown.Item>
-                  <Dropdown.Item>Shoes</Dropdown.Item>
+                  {displayOneRepoTitle}
                 </Dropdown.Menu>
               </Dropdown>
             </Dropdown.Item>
@@ -53,12 +53,12 @@ export default class TopNav extends Component {
             DM
           </Menu.Item>
 
-          <Menu.Item name='karma' active={activeItem === 'karma'} onClick={this.handleItemClick}>
-            Karma 0
+          <Menu.Item name='karma'>
+            Karma {this.props.currentUser.karma}
           </Menu.Item>
 
-          <Menu.Item name='user' active={activeItem === 'user'} onClick={this.handleItemClick}>
-            User
+          <Menu.Item name='user'>
+            <img src={this.props.currentUser.avatar_url} alt="avatar"/>
           </Menu.Item>
         </Menu.Menu>
 

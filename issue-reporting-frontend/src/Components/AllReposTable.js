@@ -3,14 +3,23 @@ import { Table } from 'semantic-ui-react'
 
 class AllReposTable extends Component {
 
+  handleClick = (e) => {
+    // debugger
+    // e.target.innerHTML.style.color = "red"
+    //grab the repo_id the repo selected using dataset set up in the Table.call
+    let repoid = parseInt(e.target.dataset.repoid)
+    this.props.handleTableRepoClick(repoid)
+    this.props.history.push('/analytics/1')
+  }
+
   render() { 
     // const schoolData = this.props.repos
     // const cohortData = this.props.repos.filter(repo => repo.name.indexOf('dumbo-web-051319'))
 
     const displayOneRepoData = this.props.repos.map(repo => {
       return (
-        <Table.Row>
-          <Table.Cell>{repo.name}</Table.Cell>
+        <Table.Row key={repo.github_repo_id}>
+          <Table.Cell data-repoid={repo.id} onClick={this.handleClick}>{repo.name}</Table.Cell>
           <Table.Cell>{repo.forks_count} </Table.Cell>
           <Table.Cell>{repo.open_issues_count} </Table.Cell>
           <Table.Cell>{parseInt(repo.forks_count) - parseInt(repo.open_issues_count)}</Table.Cell>
@@ -24,7 +33,7 @@ class AllReposTable extends Component {
       )}
     )
 
-    const CohortData = this.props.repos.filter(repo => repo.name.indexOf('dumbo-web-051319'))
+    // const CohortData = this.props.repos.filter(repo => repo.name.indexOf('dumbo-web-051319'))
 
     return(
       <>

@@ -6,24 +6,21 @@ class ReposController < ApplicationController
     render json: repos
   end
 
+  def data
+    data = Repo.all.map { |repo| 
+      {
+        "repo_name" => repo.name,
+        "percent_incomplete" => (repo.forks_count - repo.open_issues_count)/repo.forks_count,
+        "percent_incompleteColor" => "hsl(169, 70%, 50%)"
+      }
+    }
+    render json: data
+  end
+
   # GET /repos/1
   def show
     repo = Repo.find(params[:id])
     render json: repo
-
-    # Above is to get data from our own database
-    # Below is to get data from github API directly without writing to our database
-    # client = Octokit::Client.new(:access_token => 'eeae13544e7e1690311ed39afd7ed2c8ccb98916')
-    # repo = Repo.find(params[:id])
-    # repo = client.repo "learn-co-students/#{repo.name}"
-    # # render json: repo
-    # render json: { 
-    #   forks_count: repo.forks_count, # number of students forked
-    #   open_issues_count: repo.open_issues_count, # /this is actually how many students who completed - merged pull request with 'Done'.
-    #   parent: repo.parent, 
-    #   source: repo.source
-    # }
-
   end
 
   # POST /repos

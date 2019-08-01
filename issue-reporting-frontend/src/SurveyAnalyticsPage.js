@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Grid, Divider } from 'semantic-ui-react'
-import TopNav from "./containers/TopNav";
-import GraphicsContainer from "./containers/GraphicsContainer";
+// import TopNavContainer from "./containers/TopNavContainer";
+// import GraphicsContainer from "./containers/GraphicsContainer";
 
 
-class SurveySummaryPage extends Component {
+class SurveyAnalyticsPage extends Component {
 
 
   render() { 
     return ( 
       <>
-        <TopNav/>
+        {/* <TopNavContainer/> */}
         <Grid celled>
           <Grid.Row>
             <Grid.Column width={16}>
@@ -19,20 +19,20 @@ class SurveySummaryPage extends Component {
               <Divider />
               </Grid.Column>
             <Grid.Column width={16}>
-              <GraphicsContainer/>
+              {/* <GraphicsContainer/> */}
               {/* we need to pass in to GraphicsContainer: repos={repos} surveyResults={this.props.surveyResults} */}
               <Divider />
               </Grid.Column>
             
             <Grid.Column width={16}>
-              <h1>Hi from summary div</h1>
+              <h1>Hi from summary div</h1> */}
               {/* we need to pass in to AllReposTable: repos={repos} surveyResults={this.props.surveyResults} */}
-              {/* <div>
+              <div>
               <p> Hi from Survey summary</p>
-              <p> Incomplete reason table<p>
+              <p> Incomplete reason table</p>
               <p>Problem analysis</p>
               <p>Suggested fix</p>
-              </div> */}
+              </div>
             </Grid.Column>
 
           </Grid.Row>
@@ -42,4 +42,4 @@ class SurveySummaryPage extends Component {
   }
 }
  
-export default SurveySummaryPage;
+export default SurveyAnalyticsPage;

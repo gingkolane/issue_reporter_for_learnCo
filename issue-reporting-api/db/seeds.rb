@@ -8,12 +8,11 @@ client = Octokit::Client.new(:access_token => 'eeae13544e7e1690311ed39afd7ed2c8c
 # users = client.org_public_members('learn-co-students', per_page: 1000)
 
 # Get all the repos of the organization learn-co-students
-repos = Octokit.repos('learn-co-students', per_page: 100)
-
 # repos = Octokit.all_repositories('learn-co-students')
-
-repos.each do |repo|
-  Repo.create(github_repo_id: repo.id, name: repo.name, forks_count: repo.forks_count, open_issues_count: repo.open_issues_count )
+repos = Octokit.repos('learn-co-students', per_page: 1000)
+filtered_repos = repos.select {|repo| repo[:forks_count] > 10}
+filtered_repos.each do |repo|
+  Repo.create(github_repo_id: repo.id, name: repo.name, forks_count: repo.forks_count, open_issues_count: repo.open_issues_count, parent: repo.parent, source: repo.source )
 end
 
 # # -----------
@@ -23,7 +22,7 @@ end
 users = Octokit.org_public_members('learn-co-students', per_page: 1000)
 
 users.each do |user|
-  User.create(github_user_id: user.id, login: user.login, role: 'student', avartar_url: user.avartar_url )
+  User.create(github_user_id: user.id, login: user.login, role: 'student', avatar_url: user.avatar_url )
 end
 
 # ---------------------
