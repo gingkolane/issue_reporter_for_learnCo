@@ -9,6 +9,7 @@ class BarChart extends Component {
      return (repo.forks_count - repo.open_issues_count)/repo.forks_count
     })
 
+
     d3.select("#bar-chart").html("") 
 
     const svg = d3.select("#bar-chart")

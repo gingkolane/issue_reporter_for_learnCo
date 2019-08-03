@@ -1,28 +1,35 @@
-# require 'octokit'
+require 'octokit'
 
-client = Octokit::Client.new(:access_token => '4b6614de92eab254a0eda26502f17f7c2f2b937b')
+Survey.destroy_all
+User.destroy_all
+Repo.destroy_all
+
+# client = Octokit::Client.new(:access_token => '4b6614de92eab254a0eda26502f17f7c2f2b937b')
+client = Octokit::Client.new(:login => 'learnCoStudentReporter', :password => 'Reporter051319')
 
 repos=client.repos('learn-co-students', per_page: 100)
-total_count = repos.total_count
 
+# get the page number for the last page
 last_response = client.last_response
-number_of_pages = last_response.rels[:last].href.match(/page=(\d+).*$/)[1]
-
-puts last_response.rels[:last].href
-puts "There are #{total_count} results, on #{number_of_pages} pages!"
-
-puts "And here's the first path for every set"
-
-puts last_response.data.items.first.path
-until last_response.rels[:next].nil?
-  last_response = last_response.rels[:next].get
-  puts last_response.data.items.first.path
-end
+url_last_response = last_response.rels[:last].href     # "https://api.github.com/user/8825476/repos?per_page=1000&page=1738"
+number_of_pages = url_last_response.split("=")[-1].to_i     # 1738
 
 
+first_page_repos=repos
+first_page_repos.each do |repo|
+  Repo.create(github_repo_id: repo.id, name: repo.name, forks_count: repo.forks_count, open_issues_count: repo.open_issues_count, parent: repo.parent, source: repo.source )
+end 
 
+  for i in 1..number_of_pages do 
+    # next_repos = repos.concat client.last_response.rels[:next].get.data
+    next_page_repos = client.last_response.rels[:next].get.data
+    next_page_repos.each do |repo|
+      Repo.create(github_repo_id: repo.id, name: repo.name, forks_count: repo.forks_count, open_issues_count: repo.open_issues_count, parent: repo.parent, source: repo.source )
+    end
+  end
 
-# require 'octokit'
+puts "Done!"
+puts "repos' count is #{repos.count}"
 
 # # !!! DO NOT EVER USE HARD-CODED VALUES IN A REAL APP !!!
 # # Instead, set and test environment variables, like below
