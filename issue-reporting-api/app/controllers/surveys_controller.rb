@@ -9,34 +9,7 @@ class SurveysController < ApplicationController
   end
 
 
-  def incomplete_reason_count(repoid)
-
-    surveysOfOneRepo = Survey.all.filter { |survey| survey.repo_id == repoid }
-    repo = Repo.find(repoid)
-
-    count_a = 0, count_b = 0, count_d = 0, count_d = 0
-
-    surveysOfOneRepo.each do |survey|
-      case survey.incompleteReason
-        when "A"
-          count_a = count_a + 1
-        when "B"
-          count_b = count_b + 1
-        when "C"
-          count_c = count_c + 1
-        when "D"
-          count_d = count_d + 1
-        else 
-          continue;
-      end 
-      
-      # update repo data table
-      repo.update
-    end
-
-    render json: @surveyresult
-
-  end 
+  
 
   # GET /surveys/1
   def show
