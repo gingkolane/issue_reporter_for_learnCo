@@ -41,7 +41,6 @@ class SurveyForm extends Component {
     }
 
     // redirect to next lesson
-    // this.props.history.push('/repo');
     this.props.goToNextRepo();
 
     //Close the portal window
@@ -50,9 +49,6 @@ class SurveyForm extends Component {
 
   
   render() { 
-
-    console.log("currentRepo in surveyform", this.props.currentRepo.id)
-    console.log("currentUser in surveyform", this.props.currentUser.id)
 
     return (  
       <Form onSubmit={this.handleSubmit}>

@@ -4,17 +4,13 @@ import { Table } from 'semantic-ui-react'
 class AllReposTable extends Component {
 
   handleClick = (e) => {
-    // debugger
     // e.target.innerHTML.style.color = "red"
     //grab the repo_id the repo selected using dataset set up in the Table.call
     let repoid = parseInt(e.target.dataset.repoid)
     this.props.handleTableRepoClick(repoid)
-    // this.props.history.push('/analytics/survey')
   }
 
   render() { 
-    // const schoolData = this.props.repos
-    // const cohortData = this.props.repos.filter(repo => repo.name.indexOf('dumbo-web-051319'))
 
     const displayOneRepoData = this.props.repos.map(repo => {
       return (
@@ -22,13 +18,11 @@ class AllReposTable extends Component {
           <Table.Cell data-repoid={repo.id} onClick={this.handleClick}>{repo.name}</Table.Cell>
           <Table.Cell>{repo.forks_count} </Table.Cell>
           <Table.Cell>{repo.open_issues_count} </Table.Cell>
-          <Table.Cell>{parseInt(repo.forks_count) - parseInt(repo.open_issues_count)}</Table.Cell>
-          {/* <Table.Cell>Issue reported: </Table.Cell>
-      
-          <Table.Cell>20</Table.Cell>
-          <Table.Cell>12</Table.Cell>
-          <Table.Cell>8</Table.Cell>
-          <Table.Cell>8</Table.Cell> */}
+          <Table.Cell>{parseInt(repo.forks_count) - parseInt(repo.open_issues_count)}</Table.Cell>      
+          <Table.Cell>{repo.reason_A}</Table.Cell>
+          <Table.Cell>{repo.reason_B}</Table.Cell>
+          <Table.Cell>{repo.reason_C}</Table.Cell>
+          <Table.Cell>{repo.reason_D}</Table.Cell>
         </Table.Row>
       )}
     )
@@ -42,21 +36,19 @@ class AllReposTable extends Component {
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell rowSpan='2'>Lab name</Table.HeaderCell>
-          <Table.HeaderCell colSpan='4' background-color='blue'>Flatiron at large</Table.HeaderCell>
-          {/* <Table.HeaderCell colSpan='4' background-color='purple'>Dumbo-web-051319</Table.HeaderCell> */}
+          <Table.HeaderCell colSpan='3' background-color='blue'>Flatiron at large</Table.HeaderCell>
+          <Table.HeaderCell colSpan='4' background-color='purple'>Survey result: incomplete reason</Table.HeaderCell>
         </Table.Row>
 
         <Table.Row>
           <Table.HeaderCell>Total forked</Table.HeaderCell>
           <Table.HeaderCell>Completed</Table.HeaderCell>
           <Table.HeaderCell>Incomplete</Table.HeaderCell>
-          {/* <Table.HeaderCell>Issue reported</Table.HeaderCell>
 
-
-          <Table.HeaderCell>Total forked</Table.HeaderCell>
-          <Table.HeaderCell>Completed</Table.HeaderCell>
-          <Table.HeaderCell>Incomplete</Table.HeaderCell>
-          <Table.HeaderCell>Issue reported</Table.HeaderCell> */}
+          <Table.HeaderCell>A</Table.HeaderCell>
+          <Table.HeaderCell>B</Table.HeaderCell>
+          <Table.HeaderCell>C</Table.HeaderCell>
+          <Table.HeaderCell>D</Table.HeaderCell>
 
         </Table.Row>
       </Table.Header>
@@ -64,19 +56,6 @@ class AllReposTable extends Component {
       <Table.Body textalign='center'>
           {displayOneRepoData}
    
-
-        {/* <Table.Row>
-        <Table.Cell>Repo 2</Table.Cell>
-          <Table.Cell>500</Table.Cell>
-          <Table.Cell>300</Table.Cell>
-          <Table.Cell>200</Table.Cell>
-          <Table.Cell>150</Table.Cell>
-
-          <Table.Cell>20</Table.Cell>
-          <Table.Cell>12</Table.Cell>
-          <Table.Cell>8</Table.Cell>
-          <Table.Cell>8</Table.Cell>
-        </Table.Row> */}
 
       </Table.Body>
     </Table>

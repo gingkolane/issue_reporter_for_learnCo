@@ -9,11 +9,7 @@ class SidBarRightContainer extends Component {
 
   handleOpen = () => this.setState({ open: true })
 
-  handleClose = () => {
-  
-    this.setState({ open: false })
-  }
-
+  handleClose = () => this.setState({ open: false })
 
   render() { 
     const { open } = this.state
