@@ -21,6 +21,8 @@ rails g scaffold user learnco_username learnco_password cohort github_user_id:in
 
 rails g scaffold survey repo:references user:references completion_status incompleteReason issueType problemAnalysis suggestedFix --no-test-framework
 
+rails g resource cohort name forks_url
+
 
 6. create database and link data
   To use this backend run these commands:

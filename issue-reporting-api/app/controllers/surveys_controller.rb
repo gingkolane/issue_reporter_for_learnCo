@@ -8,9 +8,6 @@ class SurveysController < ApplicationController
     render json: @surveys
   end
 
-
-  
-
   # GET /surveys/1
   def show
     render json: @survey

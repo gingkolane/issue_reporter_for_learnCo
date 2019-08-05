@@ -46,6 +46,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:learnco_username, :learnco_password, :cohort, :github_user_id, :login, :role, :karma, :avatar_url, :url, :html_url, :repos_url)
+      params.permit(:learnco_username, :learnco_password,:github_user_id, :login, :role, :karma, :avatar_url, :url, :html_url, :repos_url, :cohort_name)
     end
 end

@@ -44,7 +44,7 @@ class ReposController < ApplicationController
 
   private
     def repo_params
-      params.permit(:github_repo_id, :name, :full_name, :url, :html_url, :readme, :open_issues_count, :forks_count, :parent, :source)
+      params.permit(:github_repo_id, :name, :full_name, :url, :html_url, :readme, :open_issues_count, :forks_count, :forks_url, :parent, :source )
     end
 
   end

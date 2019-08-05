@@ -1,0 +1,19 @@
+1. Where are repos in learn-co-students forked from?
+
+example:
+learn-co-students
+https://github.com/learn-co-students/sinatra-basic-routes-lab-nyc-clarke-web-071519
+
+learn-co-curriculum:
+https://github.com/learn-co-curriculum/sinatra-basic-routes-lab
+
+
+
+2. Both works, why?
+# users=Octokit.org_members('learn-co-students')
+# users=client.org_members('learn-co-students')
+
+3. serializer 
+
+4. how to run a independent ruby file? how to define a method, is it class method or instant method
+which file to put in if instant method, or if class method.  seed file what is it. 

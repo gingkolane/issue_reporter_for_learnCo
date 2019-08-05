@@ -19,9 +19,18 @@ puts "There are #{total_count} results, on #{number_of_pages} pages!"
 puts "And here's the first path for every set"
 
 repos=client.repos('learn-co-students', per_page: 100)
+repos.each do |repo|
+  Repo.create(github_repo_id: repo.id, name: repo.name, forks_count: repo.forks_count, open_issues_count: repo.open_issues_count, parent: repo.parent, source: repo.source )
+end 
 
-for i in 1..1783 do 
-  repos.concat client.last_response.rels[:next].get.data
+for i in 1..5 do 
+  # next_repos = repos.concat client.last_response.rels[:next].get.data
+  next_repos = client.last_response.rels[:next].get.data
+  next_repos.each do |repo|
+    Repo.create(github_repo_id: repo.id, name: repo.name, forks_count: repo.forks_count, open_issues_count: repo.open_issues_count, parent: repo.parent, source: repo.source )
+  end
+
+
 end
 
 puts "Done!"

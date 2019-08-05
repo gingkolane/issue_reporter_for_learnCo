@@ -10,24 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_01_183311) do
+ActiveRecord::Schema.define(version: 2019_08_04_154939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "cohorts", force: :cascade do |t|
+    t.string "name"
+    t.string "forks_url"
+  end
+
   create_table "repos", force: :cascade do |t|
-    t.integer "github_repo_id"
+    t.bigint "github_repo_id"
     t.string "name"
     t.integer "forks_count"
+    t.integer "open_issues_count"
     t.string "parent"
     t.string "source"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "open_issues_count"
-    t.string "reason_a"
-    t.string "reason_b"
-    t.string "reason_c"
-    t.string "reason_d"
+    t.string "forks_url"
+    t.string "type"
   end
 
   create_table "surveys", force: :cascade do |t|
@@ -45,20 +48,16 @@ ActiveRecord::Schema.define(version: 2019_08_01_183311) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.bigint "github_user_id"
+    t.string "login"
     t.string "learnco_username"
     t.string "learnco_password"
-    t.string "cohort"
-    t.integer "github_user_id"
-    t.string "login"
+    t.string "cohort_name"
     t.string "role"
     t.string "karma"
     t.string "avatar_url"
-    t.string "url"
-    t.string "html_url"
-    t.string "repos_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "avartar_url"
   end
 
   add_foreign_key "surveys", "repos"
