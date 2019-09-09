@@ -1,1 +1,2 @@
-# mod4Project
+This is my mod 4 project during my study in Flatiron School/Access Lab.It adds a survey interface to the existing learn.co platform to allow students' to report bugs and offer fixes in the labs. The survey data was aggregated in an analytics dashboard for SECs and engineering team, as well as automatically report issues to the github repo. The feature allows task prioritization for the engineering team as well as quick fix of these problems. 
+
