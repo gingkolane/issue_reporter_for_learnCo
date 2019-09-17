@@ -37,9 +37,8 @@ export default class TopNavContainer extends Component {
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Item>Assignments</Menu.Item>
-        <Menu.Item>Analysis</Menu.Item>
+        {/* <Menu.Item as={Link} to='/tableau'>Analysis</Menu.Item> */}
         <Menu.Item>Help</Menu.Item>
-        
         <Menu.Menu position='right'>
 
           <Menu.Item name='search'>
