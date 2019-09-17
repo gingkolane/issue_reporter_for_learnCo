@@ -112,13 +112,18 @@
 # # ---------------------
 
 
-repo_collect = Repo.take(100)
-user_collect = User.take(100)
-option1 = ['A', 'B', 'C']
-option2 = [0, 1]
+# repo_collect = Repo.take(100)
+# user_collect = User.take(100)
+# option1 = ['A', 'B', 'C']
+# option2 = [0, 1]
 
-500.times do 
-  Survey.create(repo_id: repo_collect.sample.id, user_id: user_collect.sample.id, completion_status: option2.sample, incompleteReason: option1.sample, issueType: option1.sample )
+# 500.times do 
+#   Survey.create(repo_id: repo_collect.sample.id, user_id: user_collect.sample.id, completion_status: option2.sample, incompleteReason: option1.sample, issueType: option1.sample )
+# end 
+
+# enter survey results in all repos
+Repo.all.each do |repo|
+  repo.update_survey_result_in_repo
 end 
 
 # References:

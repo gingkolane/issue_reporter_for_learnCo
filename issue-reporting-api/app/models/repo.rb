@@ -13,14 +13,21 @@ class Repo < ApplicationRecord
   end
 
 
-  def incomplete_reason_count
-    hash = Hash.new(0)
+  def update_survey_result_in_repo 
 
-    repo.surveys.each do |survey|
-      hash[survey.incompleteReason] += 1
-    end 
+    count_a = self.surveys.where(incompleteReason: "A").count
+    count_b = self.surveys.where(incompleteReason: "B").count
+    count_c = self.surveys.where(incompleteReason: "C").count
+    count_d = self.surveys.where(incompleteReason: "D").count
 
+    self.update(
+      "reason_a": count_a,
+      "reason_b": count_b,
+      "reason_c": count_c,
+      "reason_d": count_d
+    )
   end 
+
 
 end
 

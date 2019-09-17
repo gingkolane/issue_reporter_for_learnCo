@@ -17,10 +17,6 @@ class ReposController < ApplicationController
     render json: data
   end
 
-    def survey_result
-      # result = Repo.
-    end 
-
   # GET /repos/1
   def show
     repo = Repo.find(params[:id])

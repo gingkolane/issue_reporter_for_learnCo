@@ -10,17 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_04_154939) do
+ActiveRecord::Schema.define(version: 2019_08_05_150919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cohorts", force: :cascade do |t|
+  create_table "repos", id: :integer, default: nil, force: :cascade do |t|
+    t.bigint "github_repo_id"
     t.string "name"
-    t.string "forks_url"
+    t.integer "forks_count"
+    t.integer "open_issues_count"
+    t.string "reason_a"
+    t.string "reason_b"
+    t.string "reason_c"
+    t.string "reason_d"
   end
 
-  create_table "repos", force: :cascade do |t|
+  create_table "repos_all", id: :bigint, default: -> { "nextval('repos_id_seq'::regclass)" }, force: :cascade do |t|
     t.bigint "github_repo_id"
     t.string "name"
     t.integer "forks_count"
@@ -31,6 +37,10 @@ ActiveRecord::Schema.define(version: 2019_08_04_154939) do
     t.datetime "updated_at", null: false
     t.string "forks_url"
     t.string "type"
+    t.string "reason_a"
+    t.string "reason_b"
+    t.string "reason_c"
+    t.string "reason_d"
   end
 
   create_table "surveys", force: :cascade do |t|
@@ -60,6 +70,6 @@ ActiveRecord::Schema.define(version: 2019_08_04_154939) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "surveys", "repos"
+  add_foreign_key "surveys", "repos_all", column: "repo_id"
   add_foreign_key "surveys", "users"
 end
