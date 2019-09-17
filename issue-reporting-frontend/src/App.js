@@ -5,6 +5,8 @@ import './stylesheets/App.css'
 import LoginPage from './LoginPage'
 import RepoPage from './RepoPage'
 import AnalyticsPage from './AnalyticsPage'
+import TableauPage from './TableauPage'
+
 import TopNavContainer from "./containers/TopNavContainer";
 
 class App extends Component {
@@ -81,7 +83,9 @@ class App extends Component {
         <Route path="/repo" render={ (routerProps) => <RepoPage {...routerProps} goToNextRepo={this.goToNextRepo} repos={this.state.repos} currentUser={this.state.currentUser} currentRepo={this.state.currentRepo} increaseKarmaCount={this.increaseKarmaCount}/> } />
         
         <Route path="/analytics" render = {(routerProps) => <AnalyticsPage {...routerProps} repos={this.state.repos} users={this.state.users} surveys={this.state.surveys} currentUser={this.state.currentUser} currentRepo={this.state.currentRepo} /> }/>
-      
+        
+        <Route path="/tableau" render = {(routerProps) => <TableauPage {...routerProps} repos={this.state.repos} users={this.state.users} surveys={this.state.surveys} currentUser={this.state.currentUser} currentRepo={this.state.currentRepo} /> }/>
+     
       </Switch>
       
       </>
