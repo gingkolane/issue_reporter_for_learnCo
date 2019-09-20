@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 2019_08_05_150919) do
   create_table "users", force: :cascade do |t|
     t.bigint "github_user_id"
     t.string "login"
-    t.string "learnco_username"
-    t.string "learnco_password"
+    t.string "username"
+    t.string "password"
     t.string "cohort_name"
     t.string "role"
     t.string "karma"

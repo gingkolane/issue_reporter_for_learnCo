@@ -71,11 +71,11 @@ class App extends Component {
   render () {
     return (
       <>
-      <TopNavContainer
+      {/* <TopNavContainer
         repos={this.state.repos} //for curriculum dropdown
         handleTopNavRepoClick={this.handleTopNavRepoClick}  // handle dropdown click
         currentUser={this.state.currentUser}  //for login
-      />
+      /> */}
 
       <Switch>
         <Route exact path="/" component={LoginPage} />

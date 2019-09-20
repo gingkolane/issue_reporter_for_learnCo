@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import tableau from 'tableau-api'; 
+import TopNavContainer from "./containers/TopNavContainer";
+
 // import { Grid, Divider } from 'semantic-ui-react'
 // import GraphicsContainer from "./containers/GraphicsContainer";
 // import AllReposTable from "./components/AllReposTable";
@@ -20,8 +22,16 @@ class TableauPage extends Component {
   
   render() {  
     return (  
-      <div ref={(div) => { this.vizContainer = div }}>  
-      </div>  
+      <>
+        <TopNavContainer
+          repos={this.state.repos} //for curriculum dropdown
+          handleTopNavRepoClick={this.handleTopNavRepoClick}  // handle dropdown click
+          currentUser={this.state.currentUser}  //for login
+        />
+
+        <div ref={(div) => { this.vizContainer = div }}>  
+        </div>
+      </>  
     )  
   }  
 

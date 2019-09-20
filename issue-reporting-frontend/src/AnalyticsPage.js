@@ -3,6 +3,7 @@ import { Grid, Divider } from 'semantic-ui-react'
 import GraphicsContainer from "./containers/GraphicsContainer";
 import AllReposTable from "./components/AllReposTable";
 import SurveyResultsTable from './components/SurveyResultsTable';
+import TopNavContainer from "./containers/TopNavContainer";
 
 
 class AnalyticsPage extends Component {
@@ -22,6 +23,13 @@ class AnalyticsPage extends Component {
   render() { 
     return ( 
       <>
+
+        <TopNavContainer
+        repos={this.state.repos} //for curriculum dropdown
+        handleTopNavRepoClick={this.handleTopNavRepoClick}  // handle dropdown click
+        currentUser={this.state.currentUser}  //for login
+         />
+
         <Grid celled>
           <Grid.Row>
             
