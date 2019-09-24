@@ -6,13 +6,13 @@
 # for users, we acquired used who has forked these repos
 # we create joint table to link uses and their repos
 
-# require 'octokit'
+require 'octokit'
 
 #create Octokit client, Octokit method can be called either on a client instance or Octokit
 # client = Octokit::Client.new(:access_token => '66da52aacd4c4ec69957ffc586cec8a335f4d4b8')
 # if you push repo to github, github will deactivate access_token
 # so I will use username and password
-# client = Octokit::Client.new(:login => 'learnCoStudentReporter', :password => 'Reporter051319')
+# client = Octokit::Client.new(:login => 'aaaaa', :password => 'bbbbbb')
 
 # This part was done first seperately==================================
 # Repo.destroy_all
@@ -59,28 +59,28 @@
 # # Above code acquired repos from beginning to id= 107397, it is stopped because it exceeds the user limit. 
 #################################################################
 
-# client = Octokit::Client.new(:login => 'gingkolane', :password => 'Fisheggs22!')
+client = Octokit::Client.new(:login => 'xxxxx', :password => 'yyyyy!')
 
-# # filter for repo_id > 107397
-# part_two = Repo.where("id > ?", 107397) 
+# filter for repo_id > 107397
+part_two = Repo.where("id > ?", 107397) 
 
-# part_two.each do |repo|
-#   # check if repository exist
-#   if client.repository?(repo.github_repo_id)
-#     # get the forks for the repo
-#     repo_forks = client.forks(repo.github_repo_id)
+part_two.each do |repo|
+  # check if repository exist
+  if client.repository?(repo.github_repo_id)
+    # get the forks for the repo
+    repo_forks = client.forks(repo.github_repo_id)
 
-#     repo_forks.each do |fork|
-#       # create reposUser data in repos_users table
-#       ReposUser.create(repo_name:repo.name, github_username:fork.owner.login)
+    repo_forks.each do |fork|
+      # create reposUser data in repos_users table
+      ReposUser.create(repo_name:repo.name, github_username:fork.owner.login)
       
-#       # create user if not exist  
-#       if User.find_by(username: fork.owner.login).nil? 
-#         User.create(username: fork.owner.login, password_digest: "$2a$12$PU3/1qCSoIMlKp26LYv8Z.qNySrPkYPSKxi7ywwo39rZBbgcCNw8K", role:'student', karma: 0, avatar_url: fork.owner.avatar_url, cohort_name: fork.name.split('-dumbo-')[1])
-#       end
-#     end 
-#   end 
-# end 
+      # create user if not exist  
+      if User.find_by(username: fork.owner.login).nil? 
+        User.create(username: fork.owner.login, password_digest: "$2a$12$PU3/1qCSoIMlKp26LYv8Z.qNySrPkYPSKxi7ywwo39rZBbgcCNw8K", role:'student', karma: 0, avatar_url: fork.owner.avatar_url, cohort_name: fork.name.split('-dumbo-')[1])
+      end
+    end 
+  end 
+end 
 
 # ======================
 # Notes and References:

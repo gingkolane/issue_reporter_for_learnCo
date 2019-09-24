@@ -1,5 +1,7 @@
 class AuthController < ApplicationController
+  
   def create
+# byebug
     user = User.find_by(username: params[:username])
     is_authenticated = user.authenticate(params[:password]) if user
 
@@ -9,4 +11,5 @@ class AuthController < ApplicationController
       render json: { errors: ["Wrong username or password bud. Sorry!"] }, status: :unprocessable_entity
     end
   end
+
 end

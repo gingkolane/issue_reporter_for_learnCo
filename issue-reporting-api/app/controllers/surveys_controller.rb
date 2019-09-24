@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: [:show, :update, :destroy]
+  before_action :set_survey, only: [:show, :update, :destroy, :create]
 
   # GET /surveys
   def index
@@ -16,7 +16,7 @@ class SurveysController < ApplicationController
   # POST /surveys
   def create
     @survey = Survey.new(survey_params)
-    # byebug
+    byebug
     if @survey.save
       render json: @survey, status: :created, location: @survey
     else
@@ -36,7 +36,7 @@ class SurveysController < ApplicationController
   # DELETE /surveys/1
   def destroy
     @survey.destroy
-  end
+  ends
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -46,6 +46,9 @@ class SurveysController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def survey_params
-      params.permit(:repo_id, :user_id, :completion_status, :incompleteReason, :issueType, :problemAnalysis, :suggestedFix, :reason_a, :reason_b, :reason_c, :reason_d)
+      params.permit(:repos_user_id, :completion_status, :incompleteReason, :issueType, :problemAnalysis, :suggestedFix)
     end
+
+
+
 end

@@ -10,20 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_05_150919) do
+ActiveRecord::Schema.define(version: 2019_09_24_181411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "repos", id: :integer, default: nil, force: :cascade do |t|
+  create_table "cars", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "repos", id: :bigint, default: nil, force: :cascade do |t|
     t.bigint "github_repo_id"
     t.string "name"
     t.integer "forks_count"
     t.integer "open_issues_count"
+    t.integer "percent_completion"
     t.string "reason_a"
     t.string "reason_b"
     t.string "reason_c"
     t.string "reason_d"
+    t.string "master_repo"
+    t.string "cohort_name"
   end
 
   create_table "repos_all", id: :bigint, default: -> { "nextval('repos_id_seq'::regclass)" }, force: :cascade do |t|
@@ -43,33 +51,30 @@ ActiveRecord::Schema.define(version: 2019_08_05_150919) do
     t.string "reason_d"
   end
 
-  create_table "surveys", force: :cascade do |t|
+  create_table "repos_users", force: :cascade do |t|
     t.bigint "repo_id"
     t.bigint "user_id"
+    t.string "repo_name", limit: 255
+    t.string "github_username", limit: 255
+  end
+
+  create_table "surveys", force: :cascade do |t|
+    t.integer "repos_user_id"
     t.string "completion_status"
     t.string "incompleteReason"
     t.string "issueType"
     t.string "problemAnalysis"
     t.string "suggestedFix"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["repo_id"], name: "index_surveys_on_repo_id"
-    t.index ["user_id"], name: "index_surveys_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.bigint "github_user_id"
-    t.string "login"
+    t.string "github_username"
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.string "cohort_name"
     t.string "role"
-    t.string "karma"
+    t.integer "karma"
     t.string "avatar_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "surveys", "repos_all", column: "repo_id"
-  add_foreign_key "surveys", "users"
 end

@@ -1,12 +1,14 @@
 class Repo < ApplicationRecord
-  has_many :surveys
-  has_many :users, through: :surveys
+  
+  has_many :repos_users
+  has_many :users, through: :repos_users
+  has_many :surveys, through: :repos_users
 
-  # def get_one_repo
-  #   client = Octokit::Client.new(:access_token => 'eeae13544e7e1690311ed39afd7ed2c8ccb98916')
-  #   repo = Repo.find(params[:id])
-  #   repo = client.repo "learn-co-students/#{repo.name}"
-  # end
+  def get_one_repo
+    client = Octokit::Client.new(:access_token => 'eeae13544e7e1690311ed39afd7ed2c8ccb98916')
+    repo = Repo.find(params[:id])
+    repo = client.repo "learn-co-students/#{repo.name}"
+  end
 
   def issues 
     issues = client.issues "learn-co-students/#{repo.name}"
