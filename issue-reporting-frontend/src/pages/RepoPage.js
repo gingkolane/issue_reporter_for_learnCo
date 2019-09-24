@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
-import SideBarRightContainer from "./containers/SideBarRightContainer";
-import RepoContainer from "./containers/RepoContainer";
-import TopNavContainer from "./containers/TopNavContainer";
+import SideBarRightContainer from "../containers/SideBarRightContainer";
+import RepoContainer from "../containers/RepoContainer";
+import TopNavContainer from "../containers/TopNavContainer";
 
 class RepoPage extends Component {
 
   render() { 
-
+console.log("props in repopage", this.props);
     return ( 
       <>
         <TopNavContainer
@@ -33,10 +33,10 @@ class RepoPage extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-
       </>
-     );
+      );
   }
 }
  
 export default RepoPage;
+

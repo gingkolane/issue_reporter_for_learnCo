@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import tableau from 'tableau-api'; 
-import TopNavContainer from "./containers/TopNavContainer";
+import TopNavContainer from "../containers/TopNavContainer";
 
 // import { Grid, Divider } from 'semantic-ui-react'
 // import GraphicsContainer from "./containers/GraphicsContainer";

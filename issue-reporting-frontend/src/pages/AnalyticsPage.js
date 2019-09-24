@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Grid, Divider } from 'semantic-ui-react'
-import GraphicsContainer from "./containers/GraphicsContainer";
-import AllReposTable from "./components/AllReposTable";
-import SurveyResultsTable from './components/SurveyResultsTable';
-import TopNavContainer from "./containers/TopNavContainer";
+import GraphicsContainer from "../containers/GraphicsContainer";
+import AllReposTable from "../components/AllReposTable";
+import SurveyResultsTable from '../components/SurveyResultsTable';
+import TopNavContainer from "../containers/TopNavContainer";
 
 
 class AnalyticsPage extends Component {
