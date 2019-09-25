@@ -75,12 +75,11 @@ test:
 #
 # You can use this database configuration with:
 #
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
-production:
-  <<: *default
-  database: issue-reporter-api_development
+# production:
+#   url: <%= ENV['DATABASE_URL'] %>
+
+# production:
+#   <<: *default
   # database: issue-reporter-api_production
   # username: issue-reporter-api
   # password: <%= ENV['ISSUE-REPORTER-API_DATABASE_PASSWORD'] %>
