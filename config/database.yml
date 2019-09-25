@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: issue-reporter-api_production
-  username: issue-reporter-api
-  password: <%= ENV['ISSUE-REPORTER-API_DATABASE_PASSWORD'] %>
+  database: issue-reporter-api_development
+  # database: issue-reporter-api_production
+  # username: issue-reporter-api
+  # password: <%= ENV['ISSUE-REPORTER-API_DATABASE_PASSWORD'] %>
