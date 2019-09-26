@@ -27,17 +27,14 @@ class LoginPage extends Component {
     .then(data =>{
       if (data.token)  {
         localStorage.token = data.token
-        this.props.history.push('/repo')
-
-      }
+        this.props.history.push('/repo')}
     })
   }
 
-
   render () {
-
+console.log("this is login page", this.state)
     return (
-    //  "hi"
+  
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <div>
@@ -77,20 +74,6 @@ class LoginPage extends Component {
           </Message>
         </Grid.Column>
       </Grid>
-
-      // <form onSubmit={this.handleSubmit}>
-      //   <input
-      //     type="text"
-      //     name="username"
-      //     onChange={this.handleChange}
-      //     value={this.state.username} />
-      //   <input
-      //     type="password"
-      //     name="password"
-      //     onChange={this.handleChange}
-      //     value={this.state.password} />
-      //   <input type="submit" />
-      // </form>
     );
   }
 }

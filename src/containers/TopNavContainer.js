@@ -12,7 +12,7 @@ export default class TopNavContainer extends Component {
 
   render() {
     const displayOneRepoTitle = this.props.repos.slice(0,10).map(repo => 
-      <Dropdown.Item id={repo.github_repo_id} key={repo.github_repo_id} onClick={this.handleTopNavRepoClick}> {repo.name} </Dropdown.Item>
+      <Dropdown.Item id={repo.id} key={repo.github_repo_id} onClick={this.handleTopNavRepoClick}> {repo.name} </Dropdown.Item>
     )
 
     return (
