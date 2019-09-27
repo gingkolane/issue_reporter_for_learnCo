@@ -37,3 +37,5 @@ ToDos:
 * Automatic submission of labs that have lower than 50% completion rate
 
 Acknowledgements: 
+* learn.co
+* octokit gem
