@@ -33,4 +33,4 @@ ToDos:
 
 Credits: 
 <br/>
-Numerous people in the Access Lab helped me with this project. These include our lead instructors Graham, Kevin and Eric, our cohort's coaches Lezil, Marzen, and my fellow classmates Rachel, Joe, Fan. Their contributions are recorded in the git commits messages. I am grateful for everyone's help.   
+Numerous people in the Access Lab helped me with this project. These include our lead instructors Graham, Kevin and Eric, our cohort's coaches Lezil, Marzen, and my fellow classmates Daniella, Rachel, Joe, Fan. Their contributions are recorded in the git commits messages. I am grateful for everyone's help.   
