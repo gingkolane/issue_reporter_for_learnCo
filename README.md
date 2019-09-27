@@ -1,15 +1,10 @@
-<h2>Issue reporter for Learn.co</h2>
-<h3>Student-driven issue reporting system, a feature proposal to Flatiron School's teaching platform</h3>
+<h3>Issue reporter for Learn.co</h3>
+<h4> - A feature proposal for a student-driven issue reporting system to Flatiron School's learning platform</h4>
 
 This is my mod 4 project for Flatiron School/Access Lab. It adds a survey interface to the existing learn.co platform which allows students to report bugs and offer fixes to the labs. The survey data was aggregated in an analytics dashboard for SECs and the engineering team, and issues are automatically reported to the github repo. This feature prioritizes tasks for the engineering team and allows quick fixes to these problems. 
 
-This is the student interface: 
-
-This is the teacher interface:
-
-
-
-Usage: 
+Usage:
+<br/>
 A user can log in as either a student or a teacher. Student users and Teacher users go to two different pages. 
 
 Student page: 
@@ -36,6 +31,5 @@ Built With:
 ToDos:
 * Automatic submission of labs that have lower than 50% completion rate
 
-Acknowledgements: 
-* learn.co
-* octokit gem
+Credits: 
+Numerous people in the Access Lab helped me with this project. These include our lead instructors Graham, Kevin and Eric, our cohort's coaches Lezil, Marzen, and my fellow classmates Rachel, Joe, Fan. Their contributions are recorded in the git commits messages. I am grateful for everyone's help.   
