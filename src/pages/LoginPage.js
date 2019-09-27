@@ -27,7 +27,7 @@ class LoginPage extends Component {
     .then(data =>{
       if (data.token)  {
         localStorage.token = data.token
-        this.props.history.push('/repo')}
+        this.props.history.push('/student')}
     })
   }
 

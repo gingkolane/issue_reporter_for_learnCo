@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import tableau from 'tableau-api'; 
-import TopNavContainer from "../containers/TopNavContainer";
+import TopNavContainerTeacher from "../containers/TopNavContainerTeacher";
 
 // import { Grid, Divider } from 'semantic-ui-react'
 // import GraphicsContainer from "./containers/GraphicsContainer";
@@ -8,7 +8,7 @@ import TopNavContainer from "../containers/TopNavContainer";
 // import SurveyResultsTable from './components/SurveyResultsTable';
 
 
-class TableauPage extends Component {
+class TeacherPage extends Component {
 
   componentDidMount() {  
     this.initViz()  
@@ -23,10 +23,11 @@ class TableauPage extends Component {
   render() {  
     return (  
       <>
-        <TopNavContainer
-          repos={this.state.repos} //for curriculum dropdown
-          handleTopNavRepoClick={this.handleTopNavRepoClick}  // handle dropdown click
-          currentUser={this.state.currentUser}  //for login
+
+      <TopNavContainerTeacher
+        // repos={this.state.repos} //for curriculum dropdown
+        // handleTopNavRepoClick={this.handleTopNavRepoClick}  // handle dropdown click
+        currentUser={this.props.currentUser}  //for persist currentUser
         />
 
         <div ref={(div) => { this.vizContainer = div }}>  
@@ -38,4 +39,4 @@ class TableauPage extends Component {
 }
 
  
-export default TableauPage;
+export default TeacherPage;

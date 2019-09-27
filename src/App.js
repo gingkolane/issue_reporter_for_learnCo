@@ -5,19 +5,51 @@ import Pages from './pages'
 
 class App extends Component {
 
+  state = {
+    currentUser: {}
+  }
 
   componentDidMount() {
-    // fetch("http://localhost:3000/repos")
-    // .then(resp => resp.json())
-    // .then(repos => this.setState({ repos: repos }))
 
-    fetch("http://localhost:3000/users")
-    .then(resp => resp.json())
-    .then(users => this.setState({ users: users }))
+    if (localStorage.token) {
 
-    fetch("http://localhost:3000/surveys")
+      fetch('http://localhost:3000/profile', {
+        headers: {
+          Authorization: localStorage.token
+        }
+        })
+        .then(res => res.json())
+        .then(data => {
+          this.setState({currentUser: data})
+        })
+    }
+
+    if (this.state.currentUser.role === 'student') {
+      this.redirect('student')
+    }
+
+    if (this.state.currentUser.role === 'teacher') {
+      this.redirect('teacher')
+    }
+
+  }
+
+  increaseKarmaCount= () => {
+    let currentKarmaCount = parseInt(this.state.currentUser.karma);
+    let updatedKarmaCount = currentKarmaCount + 1;
+    
+    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, {
+      method: 'PATCH', 
+      headers: {
+        'Content-Type': 'application/json',
+        'Accepted':'application/json'
+      },
+      body: JSON.stringify({
+        karma: updatedKarmaCount
+      })
+    })
     .then(resp => resp.json())
-    .then(surveys => this.setState({ surveys: surveys }))
+    .then(user => this.setState({ currentUser: user}))
   }
 
   render () {
@@ -27,26 +59,20 @@ class App extends Component {
         <Route exact path="/" component={ Pages.LoginPage } />
         <Route exact path="/signup" component={ Pages.SignupPage } />
 
-        <Route path="/repo" render={ (routerProps) => <Pages.RepoPage {...routerProps} 
-          goToNextRepo={this.goToNextRepo} 
-          // repos={this.state.repos} 
+        <Route path="/student" render={ (routerProps) => <Pages.StudentPage {...routerProps} 
+          currentUser = { this.state.currentUser } 
+          increaseKarmaCount = {this.increaseKarmaCount}
           /> } 
         />
 
 
         <Route path="/analytics" render = {(routerProps) => <Pages.AnalyticsPage {...routerProps} 
-        repos={this.state.repos} 
-        users={this.state.users} 
-        surveys={this.state.surveys} 
+          currentUser = { this.state.currentUser } 
         /> }/>
         
-        <Route path="/tableau" render = {(routerProps) => <Pages.TableauPage {...routerProps} 
-        repos={this.state.repos} 
-        users={this.state.users} 
-        surveys={this.state.surveys} 
-        currentUser={this.state.currentUser} 
-        currentRepo={this.state.currentRepo} /> }/>
-
+        <Route path="/teacher" render = {(routerProps) => <Pages.TeacherPage {...routerProps} 
+          currentUser={this.state.currentUser} 
+        /> }/>
 
         <Route component={ Pages.FourOFourPage } />
 

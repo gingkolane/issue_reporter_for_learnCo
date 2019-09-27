@@ -4,7 +4,9 @@ import { withRouter } from 'react-router-dom';
 
 class SurveyForm extends Component {
   
-  state = { 
+  state = {
+    currentReposUser: {},
+    completion_status:'',
     incompleteReason:'',
     issueType:'',
     problemAnalysis:'',
@@ -16,6 +18,21 @@ class SurveyForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    //creat joint table record, use this to create survey
+    fetch("http://localhost:3000/repos_users", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accepted': 'application/json'
+      },
+      body: JSON.stringify({ 
+        repo_id: this.props.currentRepo.id, 
+        user_id: this.props.currentUser.id
+      })
+    }).then(res => res.json())
+    .then(data => {
+      this.setState({currentReposUser: data})
+    })
 
     //post new survey to the database
     fetch("http://localhost:3000/surveys", {
@@ -25,15 +42,14 @@ class SurveyForm extends Component {
         'Accepted': 'application/json'
       },
       body: JSON.stringify({ 
-        repo_id: this.props.currentRepo.id,
-        user_id: this.props.currentUser.id,
+        repos_user_id: this.state.currentReposUser.id,
         completion_status: 0,
         incompleteReason: this.state.incompleteReason,
         issueType: this.state.issueType,
         problemAnalysis: this.state.problemAnalysis,
         suggestedFix: this.state.suggestedFix
       })
-    })
+    })    
  
     //increase Karma count
     if (this.state.suggestedFix !== '') {

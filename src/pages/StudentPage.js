@@ -5,12 +5,11 @@ import RepoContainer from "../containers/RepoContainer";
 import TopNavContainer from "../containers/TopNavContainer";
 
 
-class RepoPage extends Component {
+class StudentPage extends Component {
 
   state = {
     repos: [],
-    currentRepo: {},
-    currentUser: {}
+    currentRepo: {}
   }
 
   // Logging in redirect to repo page, once repo page reloaded, get currentUser from localstorage token 
@@ -20,38 +19,11 @@ class RepoPage extends Component {
     .then(resp => resp.json())
     .then(repos => this.setState({ repos: repos }))
 
-    fetch('http://localhost:3000/profile', {
-      headers: {
-        Authorization: localStorage.token
-      }
-    })
-    .then(res => res.json())
-    .then(data => {
-      this.setState({currentUser: data})
-    })
   }
 
   handleTopNavRepoClick = (repoid) => {
     let clickedRepo = this.state.repos.find(repo => repo.id === repoid)
     this.setState({ currentRepo: clickedRepo });
-  }
-
-  increaseKarmaCount= () => {
-    let currentKarmaCount = parseInt(this.state.currentUser.karma);
-    let updatedKarmaCount = currentKarmaCount + 1;
-    
-    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, {
-      method: 'PATCH', 
-      headers: {
-        'Content-Type': 'application/json',
-        'Accepted':'application/json'
-      },
-      body: JSON.stringify({
-        karma: updatedKarmaCount
-      })
-    })
-    .then(resp => resp.json())
-    .then(user => this.setState({ currentUser: user }))
   }
 
   goToNextRepo = () => {
@@ -62,13 +34,12 @@ class RepoPage extends Component {
   }
 
   render() { 
-    console.log("props in repopage", this.props);
     return ( 
       <>
         <TopNavContainer
         repos={this.state.repos} //for curriculum dropdown
         handleTopNavRepoClick={this.handleTopNavRepoClick}  // handle dropdown click
-        currentUser={this.state.currentUser}  //for persist currentUser
+        currentUser={this.props.currentUser}
         />
 
         <Grid celled='internally'>
@@ -79,9 +50,9 @@ class RepoPage extends Component {
 
             <Grid.Column width={3}>
               <SideBarRightContainer
-                increaseKarmaCount={this.increaseKarmaCount}
+                increaseKarmaCount = {this.props.increaseKarmaCount}
                 currentRepo={this.state.currentRepo} 
-                currentUser={this.state.currentUser} 
+                currentUser={this.props.currentUser} 
                 history={this.props.history}
                 goToNextRepo={this.goToNextRepo}
               />
@@ -93,5 +64,5 @@ class RepoPage extends Component {
   }
 }
  
-export default RepoPage;
+export default StudentPage;
 

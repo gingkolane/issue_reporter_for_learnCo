@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Dropdown, Menu } from 'semantic-ui-react'
 import logo from '../assets/logo.svg'
 import search from '../assets/search.png'
@@ -37,7 +38,7 @@ export default class TopNavContainer extends Component {
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Item>Assignments</Menu.Item>
-        {/* <Menu.Item as={ Link } to='tableau'>Analysis</Menu.Item> */}
+        {/* <Menu.Item as={ Link } to='teacher'>Data Analysis</Menu.Item> */}
         {/* { as: Link, content: "About Us", key: "about", path:"/about"},
         <Menu.Item as={ Link } name='profile' to='profile'></Menu.Item> */}
         <Menu.Item>Help</Menu.Item>
