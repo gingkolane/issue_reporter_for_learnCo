@@ -19,6 +19,10 @@ class StudentPage extends Component {
     .then(resp => resp.json())
     .then(repos => this.setState({ repos: repos }))
 
+    // get the default repo as the entry page repo
+    fetch("http://localhost:3000/repos/173502")
+    .then(resp => resp.json())
+    .then(repo => this.setState({ currentRepo: repo }))
   }
 
   handleTopNavRepoClick = (repoid) => {
