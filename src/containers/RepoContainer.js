@@ -7,7 +7,7 @@ class RepoContainer extends Component {
     readme: {}
   }
 
-  componentDidUpdate(){
+  componentDidMount(){
     if (this.props.currentRepo.id) {
       fetch(`https://api.github.com/repos/learn-co-students/${this.props.currentRepo.name}/readme`)
       .then(resp => resp.json())
@@ -17,6 +17,7 @@ class RepoContainer extends Component {
 
   render() { 
     // this.fetchReadme()
+    console.log("this is readme", this.state)
     return(
       <>
         <Container textAlign='left'>
@@ -30,4 +31,3 @@ class RepoContainer extends Component {
 }
  
 export default RepoContainer;
-
