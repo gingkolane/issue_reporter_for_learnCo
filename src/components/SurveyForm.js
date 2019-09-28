@@ -51,19 +51,34 @@ class SurveyForm extends Component {
       })
     })    
  
-    //increase Karma count
+    //Reward bug fixing effort with Karma
     if (this.state.suggestedFix !== '') {
+
+      alert('Good deed! You just earned 1 karma!')
+
+      // increase karma count
       this.props.increaseKarmaCount();
+      
+      // redirect to next lesson
+      this.props.goToNextRepo();
+
+      //Close the portal window
+      this.props.handleClose();
+
+    } else {
+
+      alert('Thank you for your input, good luck with your labs!')
+      
+      // redirect to next lesson
+      this.props.goToNextRepo();
+
+      //Close the portal window
+      this.props.handleClose();
+
     }
 
-    // redirect to next lesson
-    this.props.goToNextRepo();
-
-    //Close the portal window
-    this.props.handleClose();
   }
 
-  
   render() { 
 
     return (  
