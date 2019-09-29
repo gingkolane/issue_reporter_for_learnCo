@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_09_24_181411) do
     t.bigint "user_id"
     t.string "repo_name", limit: 255
     t.string "github_username", limit: 255
+    t.string "user_cohort_name", limit: 255
   end
 
   create_table "surveys", force: :cascade do |t|
