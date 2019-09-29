@@ -4,12 +4,13 @@
 Survey.destroy_all
 
 # select all the repos from one user
-my_repos_users = ReposUser.where(user_id: 24)
+
+selected_repos_users = ReposUser.where(user_cohort_name: "dumbo-web-051319").or(ReposUser.where(user_cohort_name: "dumbo-web-career.042219"))
 
 answer_incompleteReason = ['A', 'B', 'C', 'D']
 answer_issueType = ['A', 'B', 'C']
 
-my_repos_users.each do |repos_users|
+selected_repos_users.each do |repos_users|
 
   Survey.create(
     repos_user_id: repos_users.id, 
