@@ -15,7 +15,7 @@ class TeacherPage extends Component {
   }  
   
   initViz() {  
-    const vizUrl = 'https://10ax.online.tableau.com/t/gingkolanedev877617/views/Studentreporter/Analyzetherepocompletion?:origin=card_share_link&:embed=n';  
+    const vizUrl = 'https://10ax.online.tableau.com/t/gingkolanedev877617/views/Studentreporter/CompletionStudy?:origin=card_share_link&:embed=n';
     const vizContainer = this.vizContainer;  
     let viz = new window.tableau.Viz(vizContainer, vizUrl)  
   }  
@@ -23,10 +23,7 @@ class TeacherPage extends Component {
   render() {  
     return (  
       <>
-
       <TopNavContainerTeacher
-        // repos={this.state.repos} //for curriculum dropdown
-        // handleTopNavRepoClick={this.handleTopNavRepoClick}  // handle dropdown click
         currentUser={this.props.currentUser}  //for persist currentUser
         />
 

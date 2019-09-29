@@ -24,14 +24,13 @@ class App extends Component {
         })
     }
 
-    if (this.state.currentUser.role === 'student') {
-      this.redirect('student')
-    }
+    // if (this.state.currentUser.role === 'student') {
+    //   this.redirect('student')
+    // }
 
-    if (this.state.currentUser.role === 'teacher') {
-      this.redirect('teacher')
-    }
-
+    // if (this.state.currentUser.role === 'teacher') {
+    //   this.redirect('teacher')
+    // }
   }
 
   increaseKarmaCount= () => {
@@ -62,17 +61,20 @@ class App extends Component {
         <Route path="/student" render={ (routerProps) => <Pages.StudentPage {...routerProps} 
           currentUser = { this.state.currentUser } 
           increaseKarmaCount = {this.increaseKarmaCount}
-          /> } 
+          />} 
         />
-
 
         <Route path="/analytics" render = {(routerProps) => <Pages.AnalyticsPage {...routerProps} 
           currentUser = { this.state.currentUser } 
-        /> }/>
+          increaseKarmaCount = {this.increaseKarmaCount}
+          />}
+        />
         
         <Route path="/teacher" render = {(routerProps) => <Pages.TeacherPage {...routerProps} 
           currentUser={this.state.currentUser} 
-        /> }/>
+          increaseKarmaCount = {this.increaseKarmaCount}
+          /> }
+        />
 
         <Route component={ Pages.FourOFourPage } />
 
