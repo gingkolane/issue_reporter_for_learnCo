@@ -85,7 +85,7 @@ class SurveyForm extends Component {
       <Form onSubmit={this.handleSubmit}>
   
       <Form.Group grouped>
-          <label>The reason is:</label>
+          <label>Please tell us why you did not complete this lab:</label>
           <Form.Radio
             name='incompleteReason'
             label="A. Too many labs today, don't have time to complete everything, just want to browse through."
@@ -117,8 +117,8 @@ class SurveyForm extends Component {
         </Form.Group>
 
       <Form.Group grouped>
-        <label> I think this lab has some issues, </label>
-          <Form.Radio
+        <label> I think the problem with this lab is: </label>
+          {/* <Form.Radio
             name='issueType'
             label="A. but I don't know what the issue is."
             value='A'
@@ -131,16 +131,17 @@ class SurveyForm extends Component {
             value='B'
             checked={this.state.issueType === 'B'}
             onChange={this.handleChange}
-          />
+          /> */}
           <Form.TextArea name='problemAnalysis' rows='1' value={this.state.problemAnalysis}  onChange={this.handleChange} />
 
-          <Form.Radio
+          {/* <Form.Radio
             name='issueType'
             label="C. I fixed it, and this is what I did."
             value='C'
             checked={this.state.issueType === 'C'}
             onChange={this.handleChange}
-          />
+          /> */}
+          <label> I fixed this lab, and this is what I did.</label>
           <Form.TextArea name='suggestedFix' value={this.state.suggestedFix} rows='1' onChange={this.handleChange} />
       </Form.Group>
   
