@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_09_24_181411) do
     t.string "cohort_name"
   end
 
-  create_table "repos_all", id: :bigint, default: -> { "nextval('repos_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "repos_all", id: :bigint, default: nil, force: :cascade do |t|
     t.bigint "github_repo_id"
     t.string "name"
     t.integer "forks_count"
