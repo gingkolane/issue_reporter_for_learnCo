@@ -6,6 +6,11 @@ class ReposController < ApplicationController
     render json: repos
   end
 
+  def subset
+    subset = Repo.where(cohort_name: 'dumbo-web-051319').take(10)
+    render json: subset
+  end
+
   def data
     data = Repo.all.map { |repo| 
       {
