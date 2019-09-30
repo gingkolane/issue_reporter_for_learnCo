@@ -13,7 +13,7 @@ export default class TopNavContainer extends Component {
 
   render() {
 
-    console.log('this is topnav in studentpage', this.props.karma)
+    console.log('this is topnav in studentpage', this.props.currentUser.karma)
     const displayOneRepoTitle = this.props.repos.slice(0,10).map(repo => 
       <Dropdown.Item id={repo.id} key={repo.github_repo_id} onClick={this.handleTopNavRepoClick}> {repo.master_repo} </Dropdown.Item>
     )

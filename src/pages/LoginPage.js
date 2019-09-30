@@ -6,7 +6,14 @@ class LoginPage extends Component {
   
   state = {
     username: '',
-    password: ''
+    password: '', 
+    currentUser: {}
+  }
+
+  componentDidMount() {
+    if (localStorage.token) {
+      this.props.history.push("/student")
+    }
   }
 
   handleChange = (e) => {
@@ -27,12 +34,12 @@ class LoginPage extends Component {
     .then(data =>{
       if (data.token)  {
         localStorage.token = data.token
+        // this.setState({currentUser: data.user})
         this.props.history.push('/student')}
     })
   }
 
   render () {
-console.log("this is login page", this.state)
     return (
   
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -63,7 +70,6 @@ console.log("this is login page", this.state)
                 value={this.state.password}
               />
     
-    {/* how to put this color '#00BCE1' in */}
               <Button color='blue' fluid size='large'>   
                 Sign in
               </Button>

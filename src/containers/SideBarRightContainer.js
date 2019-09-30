@@ -17,14 +17,14 @@ class SidBarRightContainer extends Component {
       <>
         <Segment inverted tertiary color='violet'>Ask a Question</Segment>
         <Segment inverted tertiary color='grey'>Questions Need Help</Segment>
-        <Segment >Fork this lab</Segment>
-        <Segment >Run Local Tests</Segment>
-        <Segment >Submit Pull Request</Segment>
+        <Segment > Fork this lab</Segment>
+        <Segment > Run Local Tests</Segment>
+        <Segment > Submit Pull Request</Segment>
         <Segment 
           inverted color='blue' tertiary 
           onClick={this.handleOpen}
           disabled={open}
-          positive
+          positive = "true"
         > NEXT LESSON</Segment>
 
           <Portal onClose={this.handleClose} open={open}>
@@ -37,7 +37,7 @@ class SidBarRightContainer extends Component {
               }}
             >
               <Header>Proceed to next lesson?</Header>
-              <p>Please tell us why you did not complete this lab:</p>
+              {/* <p>Please tell us why you did not complete this lab:</p> */}
               <SurveyForm
                 increaseKarmaCount={this.props.increaseKarmaCount} 
                 currentUser={this.props.currentUser} 

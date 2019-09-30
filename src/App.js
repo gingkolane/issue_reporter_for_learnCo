@@ -22,15 +22,7 @@ class App extends Component {
         .then(data => {
           this.setState({currentUser: data})
         })
-    }
-
-    // if (this.state.currentUser.role === 'student') {
-    //   this.redirect('student')
-    // }
-
-    // if (this.state.currentUser.role === 'teacher') {
-    //   this.redirect('teacher')
-    // }
+    } 
   }
 
   increaseKarmaCount= () => {

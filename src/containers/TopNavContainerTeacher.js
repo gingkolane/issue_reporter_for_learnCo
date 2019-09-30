@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Dropdown, Menu } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 import logo from '../assets/logo.svg'
 import search from '../assets/search.png'
 import friends from '../assets/friends.png'
