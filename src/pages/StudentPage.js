@@ -15,7 +15,8 @@ class StudentPage extends Component {
   // Logging in redirect to repo page, once repo page reloaded, get currentUser from localstorage token 
   componentDidMount () {
 
-    fetch("http://localhost:3000/repos")
+    // take subset repos data, 10 repos for topNav
+    fetch("http://localhost:3000/subset")
     .then(resp => resp.json())
     .then(repos => this.setState({ repos: repos }))
 
