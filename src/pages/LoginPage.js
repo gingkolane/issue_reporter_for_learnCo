@@ -6,13 +6,13 @@ class LoginPage extends Component {
   
   state = {
     username: '',
-    password: '', 
-    currentUser: {}
+    password: ''
+    // currentUser: {}
   }
 
   componentDidMount() {
-    if (localStorage.token) {
-      this.props.history.push("/student")
+    if (!localStorage.token) {
+      this.props.history.push("/")
     }
   }
 
@@ -35,7 +35,10 @@ class LoginPage extends Component {
       if (data.token)  {
         localStorage.token = data.token
         // this.setState({currentUser: data.user})
-        this.props.history.push('/student')}
+        console.log(data);
+        
+        this.props.history.push(`/${data.user.role}`)
+      }
     })
   }
 

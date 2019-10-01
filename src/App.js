@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 import './stylesheets/App.css'
 import Pages from './pages'
 
@@ -21,9 +21,14 @@ class App extends Component {
         .then(res => res.json())
         .then(data => {
           this.setState({currentUser: data})
+          // console.log(data.role)
+          // this.props.history.push(`/${data.role}`)
         })
     } 
   }
+
+
+
 
   increaseKarmaCount= () => {
     let currentKarmaCount = parseInt(this.state.currentUser.karma);
@@ -49,7 +54,6 @@ class App extends Component {
 
         <Route exact path="/" component={ Pages.LoginPage } />
         <Route exact path="/signup" component={ Pages.SignupPage } />
-
         <Route path="/student" render={ (routerProps) => <Pages.StudentPage {...routerProps} 
           currentUser = { this.state.currentUser } 
           increaseKarmaCount = {this.increaseKarmaCount}
@@ -76,4 +80,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -10,9 +10,17 @@ import TopNavContainerTeacher from "../containers/TopNavContainerTeacher";
 
 class TeacherPage extends Component {
 
-  componentDidMount() {  
-    this.initViz()  
-  }  
+  // componentDidMount() {  
+  //   this.initViz()  
+  // }  
+
+  componentDidMount() {
+    if (!localStorage.token) {
+      this.props.history.push("/")
+    } else {
+      this.initViz() 
+    }
+  }
   
   initViz() {  
     const vizUrl = 'https://10ax.online.tableau.com/t/gingkolanedev877617/views/Studentreporter/CompletionStudy?:origin=card_share_link&:embed=n';
