@@ -118,31 +118,10 @@ class SurveyForm extends Component {
 
       <Form.Group grouped>
         <label> I think the problem with this lab is: </label>
-          {/* <Form.Radio
-            name='issueType'
-            label="A. but I don't know what the issue is."
-            value='A'
-            checked={this.state.issueType === 'A'}
-            onChange={this.handleChange}
-          />
-          <Form.Radio
-            name='issueType'
-            label="B. I know what is going on, I think this is the problem."
-            value='B'
-            checked={this.state.issueType === 'B'}
-            onChange={this.handleChange}
-          /> */}
-          <Form.TextArea name='problemAnalysis' rows='1' value={this.state.problemAnalysis}  onChange={this.handleChange} />
+        <Form.TextArea name='problemAnalysis' rows='1' value={this.state.problemAnalysis}  onChange={this.handleChange} />
 
-          {/* <Form.Radio
-            name='issueType'
-            label="C. I fixed it, and this is what I did."
-            value='C'
-            checked={this.state.issueType === 'C'}
-            onChange={this.handleChange}
-          /> */}
-          <label> I fixed this lab, and this is what I did.</label>
-          <Form.TextArea name='suggestedFix' value={this.state.suggestedFix} rows='1' onChange={this.handleChange} />
+        <label> I fixed this lab, and this is what I did.</label>
+        <Form.TextArea name='suggestedFix' value={this.state.suggestedFix} rows='1' onChange={this.handleChange} />
       </Form.Group>
   
       <Form.Button>Submit</Form.Button>
