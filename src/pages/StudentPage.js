@@ -8,17 +8,17 @@ import TopNavContainer from "../containers/TopNavContainer";
 class StudentPage extends Component {
 
   state = {
-    repos: [],
+    // repos: [],
     currentRepo: {}
   }
 
   // Logging in redirect to repo page, once repo page reloaded, get currentUser from localstorage token 
   componentDidMount () {
 
-    // take subset repos data, 10 repos for topNav
-    fetch("http://localhost:3000/subset")
-    .then(resp => resp.json())
-    .then(repos => this.setState({ repos: repos }))
+    // // take subset repos data, 10 repos for topNav
+    // fetch("http://localhost:3000/subset")
+    // .then(resp => resp.json())
+    // .then(repos => this.setState({ repos: repos }))
 
     // get the default repo as the entry page repo
     fetch("http://localhost:3000/repos/173502")
@@ -27,14 +27,14 @@ class StudentPage extends Component {
   }
 
   handleTopNavRepoClick = (repoid) => {
-    let clickedRepo = this.state.repos.find(repo => repo.id === repoid)
+    let clickedRepo = this.props.repos.find(repo => repo.id === repoid)
     this.setState({ currentRepo: clickedRepo });
   }
 
   goToNextRepo = () => {
-    const idx = this.state.repos.indexOf(this.state.currentRepo) + 1
+    const idx = this.props.repos.indexOf(this.state.currentRepo) + 1
     this.setState({
-      currentRepo: this.state.repos[idx]
+      currentRepo: this.props.repos[idx]
     })
   }
 
@@ -42,7 +42,7 @@ class StudentPage extends Component {
     return ( 
       <>
         <TopNavContainer
-        repos={this.state.repos} //for curriculum dropdown
+        repos={this.props.repos} //for curriculum dropdown
         handleTopNavRepoClick={this.handleTopNavRepoClick}  // handle dropdown click
         currentUser={this.props.currentUser}
         />

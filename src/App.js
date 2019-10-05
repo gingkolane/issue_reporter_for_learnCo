@@ -6,7 +6,8 @@ import Pages from './pages'
 class App extends Component {
 
   state = {
-    currentUser: {}
+    currentUser: {},
+    repos: []
   }
 
   componentDidMount() {
@@ -24,11 +25,14 @@ class App extends Component {
           // console.log(data.role)
           // this.props.history.push(`/${data.role}`)
         })
+
+      // take subset repos data
+      fetch("http://localhost:3000/repos")
+      .then(resp => resp.json())
+      .then(repos => this.setState({ repos: repos }))
+
     } 
   }
-
-
-
 
   increaseKarmaCount= () => {
     let currentKarmaCount = parseInt(this.state.currentUser.karma);
@@ -56,18 +60,20 @@ class App extends Component {
         <Route exact path="/signup" component={ Pages.SignupPage } />
         <Route path="/student" render={ (routerProps) => <Pages.StudentPage {...routerProps} 
           currentUser = { this.state.currentUser } 
+          repos =  { this.state.repos } 
           increaseKarmaCount = {this.increaseKarmaCount}
           />} 
         />
 
-        <Route path="/analytics" render = {(routerProps) => <Pages.AnalyticsPage {...routerProps} 
+        {/* <Route path="/analytics" render = {(routerProps) => <Pages.AnalyticsPage {...routerProps} 
           currentUser = { this.state.currentUser } 
           increaseKarmaCount = {this.increaseKarmaCount}
           />}
-        />
+        /> */}
         
         <Route path="/teacher" render = {(routerProps) => <Pages.TeacherPage {...routerProps} 
           currentUser={this.state.currentUser} 
+          repos =  { this.state.repos } 
           increaseKarmaCount = {this.increaseKarmaCount}
           /> }
         />
