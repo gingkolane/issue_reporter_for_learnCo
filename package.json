@@ -5,6 +5,7 @@
   "dependencies": {
     "@nivo/bar": "^0.59.2",
     "d3": "^5.9.7",
+    "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
