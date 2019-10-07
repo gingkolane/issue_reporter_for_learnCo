@@ -66,6 +66,10 @@ ActiveRecord::Schema.define(version: 2019_09_24_181411) do
     t.string "issueType"
     t.string "problemAnalysis"
     t.string "suggestedFix"
+    t.string "github_username", limit: 255
+    t.string "master_repo", limit: 255
+    t.string "cohort_name", limit: 255
+    t.string "repo_name", limit: 255
   end
 
   create_table "users", force: :cascade do |t|
