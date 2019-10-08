@@ -11,10 +11,10 @@ import SummaryTable from "../components/SummaryTable";
 class TeacherPage extends Component {
 
   state = {
-    surveys:[],
-    users:[],
-    selectedRepo: {},
-    surveysOfSelectedRepo: []
+    surveys:[]
+    // users:[],
+    // selectedRepo: {},
+    // surveysOfSelectedRepo: []
   }
 
   handleTableRepoClick = (repoid) => {
@@ -40,12 +40,13 @@ class TeacherPage extends Component {
   }
   
   initViz() {  
-    const vizUrl = 'https://10ax.online.tableau.com/t/gingkolanedev877617/views/Studentreporter/CompletionStudy?:origin=card_share_link&:embed=n';
+    const vizUrl =  'https://10ax.online.tableau.com/t/gingkolanedev877617/views/Studentreporter/CompletionStudy?:origin=card_share_link&:embed=n'
     const vizContainer = this.vizContainer;  
     let viz = new window.tableau.Viz(vizContainer, vizUrl)  
   }  
   
   render() {  
+    console.log("teacherPage", this.props, this.state)
     return (  
       <>
         <TopNavContainerTeacher
