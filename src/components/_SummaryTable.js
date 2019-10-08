@@ -13,7 +13,7 @@ class SummaryTable extends Component {
   render() { 
 
 
-     console.log('this is repos in summary table', this.props.repos)
+     console.log('this is repos in summary table', this.props)
 
     const sortedRepos = this.props.repos.sort((a, b) => (a.percent_completion > b.percent_completion) ? 1 : -1)
     // const sortedRepos = this.props.repos.sort((a, b) => (a.percent_completion > percent_completion) ? 1 : (a.percent_completion === b.percent_completion) ? ((a.forks_count > b.forks_count) ? 1 : -1) : -1 )
