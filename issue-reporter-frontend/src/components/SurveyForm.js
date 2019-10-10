@@ -4,7 +4,9 @@ import { withRouter } from 'react-router-dom';
 
 class SurveyForm extends Component {
   
-  state = { 
+  state = {
+    currentReposUser: {},
+    completion_status:'',
     incompleteReason:'',
     issueType:'',
     problemAnalysis:'',
@@ -16,6 +18,21 @@ class SurveyForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    //creat joint table record, use this to create survey
+    fetch("http://localhost:3000/repos_users", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accepted': 'application/json'
+      },
+      body: JSON.stringify({ 
+        repo_id: this.props.currentRepo.id, 
+        user_id: this.props.currentUser.id
+      })
+    }).then(res => res.json())
+    .then(data => {
+      this.setState({currentReposUser: data})
+    })
 
     //post new survey to the database
     fetch("http://localhost:3000/surveys", {
@@ -25,36 +42,50 @@ class SurveyForm extends Component {
         'Accepted': 'application/json'
       },
       body: JSON.stringify({ 
-        repo_id: this.props.currentRepo.id,
-        user_id: this.props.currentUser.id,
+        repos_user_id: this.state.currentReposUser.id,
         completion_status: 0,
         incompleteReason: this.state.incompleteReason,
         issueType: this.state.issueType,
         problemAnalysis: this.state.problemAnalysis,
         suggestedFix: this.state.suggestedFix
       })
-    })
+    })    
  
-    //increase Karma count
+    //Reward bug fixing effort with Karma
     if (this.state.suggestedFix !== '') {
+
+      alert('Good deed! You just earned 1 karma!')
+
+      // increase karma count
       this.props.increaseKarmaCount();
+      
+      // redirect to next lesson
+      this.props.goToNextRepo();
+
+      //Close the portal window
+      this.props.handleClose();
+
+    } else {
+
+      alert('Thank you for your input, good luck with your labs!')
+      
+      // redirect to next lesson
+      this.props.goToNextRepo();
+
+      //Close the portal window
+      this.props.handleClose();
+
     }
 
-    // redirect to next lesson
-    this.props.goToNextRepo();
-
-    //Close the portal window
-    this.props.handleClose();
   }
 
-  
   render() { 
 
     return (  
       <Form onSubmit={this.handleSubmit}>
   
       <Form.Group grouped>
-          <label>The reason is:</label>
+          <label>Please tell us why you did not complete this lab:</label>
           <Form.Radio
             name='incompleteReason'
             label="A. Too many labs today, don't have time to complete everything, just want to browse through."
@@ -86,31 +117,11 @@ class SurveyForm extends Component {
         </Form.Group>
 
       <Form.Group grouped>
-        <label> I think this lab has some issues, </label>
-          <Form.Radio
-            name='issueType'
-            label="A. but I don't know what the issue is."
-            value='A'
-            checked={this.state.issueType === 'A'}
-            onChange={this.handleChange}
-          />
-          <Form.Radio
-            name='issueType'
-            label="B. I know what is going on, I think this is the problem."
-            value='B'
-            checked={this.state.issueType === 'B'}
-            onChange={this.handleChange}
-          />
-          <Form.TextArea name='problemAnalysis' rows='1' value={this.state.problemAnalysis}  onChange={this.handleChange} />
+        <label> I think the problem with this lab is: </label>
+        <Form.TextArea name='problemAnalysis' rows='1' value={this.state.problemAnalysis}  onChange={this.handleChange} />
 
-          <Form.Radio
-            name='issueType'
-            label="C. I fixed it, and this is what I did."
-            value='C'
-            checked={this.state.issueType === 'C'}
-            onChange={this.handleChange}
-          />
-          <Form.TextArea name='suggestedFix' value={this.state.suggestedFix} rows='1' onChange={this.handleChange} />
+        <label> I fixed this lab, and this is what I did.</label>
+        <Form.TextArea name='suggestedFix' value={this.state.suggestedFix} rows='1' onChange={this.handleChange} />
       </Form.Group>
   
       <Form.Button>Submit</Form.Button>

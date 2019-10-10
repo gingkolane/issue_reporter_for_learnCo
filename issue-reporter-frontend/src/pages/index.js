@@ -1,15 +1,15 @@
 import LoginPage from './LoginPage'
-import RepoPage from './RepoPage'
-import AnalyticsPage from './AnalyticsPage'
-import TableauPage from './TableauPage'
+import StudentPage from './StudentPage'
+// import AnalyticsPage from './AnalyticsPage'
+import TeacherPage from './TeacherPage'
 import SignupPage from './SignupPage'
 import FourOFourPage from './FourOFourPage'
 
 export default {
   LoginPage,
-  RepoPage,
-  AnalyticsPage,
-  TableauPage,
+  StudentPage,
+  // AnalyticsPage,
+  TeacherPage,
   SignupPage, 
   FourOFourPage
 }

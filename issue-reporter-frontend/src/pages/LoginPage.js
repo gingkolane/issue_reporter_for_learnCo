@@ -7,6 +7,13 @@ class LoginPage extends Component {
   state = {
     username: '',
     password: ''
+    // currentUser: {}
+  }
+
+  componentDidMount() {
+    if (!localStorage.token) {
+      this.props.history.push("/")
+    }
   }
 
   handleChange = (e) => {
@@ -27,17 +34,17 @@ class LoginPage extends Component {
     .then(data =>{
       if (data.token)  {
         localStorage.token = data.token
-        this.props.history.push('/repo')
-
+        // this.setState({currentUser: data.user})
+        console.log(data);
+        
+        this.props.history.push(`/${data.user.role}`)
       }
     })
   }
 
-
   render () {
-
     return (
-    //  "hi"
+  
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <div>
@@ -66,7 +73,6 @@ class LoginPage extends Component {
                 value={this.state.password}
               />
     
-    {/* how to put this color '#00BCE1' in */}
               <Button color='blue' fluid size='large'>   
                 Sign in
               </Button>
@@ -77,20 +83,6 @@ class LoginPage extends Component {
           </Message>
         </Grid.Column>
       </Grid>
-
-      // <form onSubmit={this.handleSubmit}>
-      //   <input
-      //     type="text"
-      //     name="username"
-      //     onChange={this.handleChange}
-      //     value={this.state.username} />
-      //   <input
-      //     type="password"
-      //     name="password"
-      //     onChange={this.handleChange}
-      //     value={this.state.password} />
-      //   <input type="submit" />
-      // </form>
     );
   }
 }

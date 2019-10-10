@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter} from 'react-router-dom';
 import { Dropdown, Menu, Image } from 'semantic-ui-react'
 import logo from '../assets/logo.svg'
 import search from '../assets/search.png'
 import friends from '../assets/friends.png'
 
-class TopNavContainer extends Component {
-
-  handleTopNavRepoClick = (e, data) => {
-    this.props.handleTopNavRepoClick(data.id);
-  }
+class TopNavContainerTeacher extends Component {
 
   move = (e, { value }) => {
     this.props.history.push('/')
   }
 
   render() {
-
-    const displayOneRepoTitle = this.props.repos.slice(0,10).map(repo => 
-      <Dropdown.Item id={repo.id} key={repo.github_repo_id} onClick={this.handleTopNavRepoClick}> {repo.master_repo} </Dropdown.Item>
-    )
 
     // trigger and options are variables for the dropdown menu showing avatar 
     const trigger = (
@@ -36,24 +27,10 @@ class TopNavContainer extends Component {
         <Menu.Item>
           <img src={logo} alt="logo" />
         </Menu.Item>
-        <Dropdown text='Curriculum' pointing className='link item'>
-          <Dropdown.Menu>
-            <Dropdown.Item>Schedule</Dropdown.Item>
-            <Dropdown.Item>Discussion Questions</Dropdown.Item>
-            <Dropdown.Item>
-              <Dropdown text='React Labs'>
-                <Dropdown.Menu>
-                  {displayOneRepoTitle}
-                </Dropdown.Menu>
-              </Dropdown>
-            </Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item>Practice Challenges</Dropdown.Item>
-            <Dropdown.Item>Project Mode</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <Menu.Item>My cohorts</Menu.Item>
         <Menu.Item>Assignments</Menu.Item>
-        <Menu.Item>Help</Menu.Item>
+        <Menu.Item as={ Link } to='teacher'>Lab completion Analysis</Menu.Item>
+        <Menu.Item as={ Link } to='student'>Student View</Menu.Item>
         <Menu.Menu position='right'>
 
           <Menu.Item name='search'>
@@ -90,4 +67,4 @@ class TopNavContainer extends Component {
   }
 }
 
-export default withRouter(TopNavContainer);
+export default withRouter(TopNavContainerTeacher);
