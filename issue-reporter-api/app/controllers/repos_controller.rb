@@ -2,8 +2,7 @@ class ReposController < ApplicationController
 
   # GET /repos
   def index
-    # repos = Repo.all
-    repos = Repo.where(cohort_name: 'dumbo-web-051319')
+    repos = Repo.all
     render json: repos
   end
 
@@ -21,8 +20,7 @@ class ReposController < ApplicationController
   # GET /repos/1
   def show
     repo = Repo.find(params[:id])
-    repo_users = repo.users
-    render json: { repo: repo, users: repo_users }
+    render json: repo
   end
 
   # POST /repos

@@ -34,6 +34,9 @@ gem 'rack-cors'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-cors'
+
 # Ruby toolkit for the GitHub API. https://github.com/octokit/octokit.rb
 gem "octokit", "~> 4.0"
 

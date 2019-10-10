@@ -4,13 +4,12 @@
 Survey.destroy_all
 
 # select all the repos from one user
-
-selected_repos_users = ReposUser.where(user_cohort_name: "dumbo-web-051319").or(ReposUser.where(user_cohort_name: "dumbo-web-career.042219"))
+my_repos_users = ReposUser.where(user_id: 24)
 
 answer_incompleteReason = ['A', 'B', 'C', 'D']
 answer_issueType = ['A', 'B', 'C']
 
-selected_repos_users.each do |repos_users|
+my_repos_users.each do |repos_users|
 
   Survey.create(
     repos_user_id: repos_users.id, 
@@ -30,7 +29,7 @@ Survey.all.each do |survey|
   elsif survey.issueType == 'C'
     Survey.update(survey.id, suggestedFix: "my suggested fix is ...")
     # increase karma count if suggestedFix is filled out
-    User.update(survey.user.id, karma: survey.user.increment!(:karma))
+    User.update(survey.user.id, karma: survey.user.increment(:karma))
   else 
     next
   end

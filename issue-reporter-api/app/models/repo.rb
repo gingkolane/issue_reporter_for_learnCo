@@ -15,7 +15,7 @@ class Repo < ApplicationRecord
   end
 
 
-  def calculate_survey_result_onerepo 
+  def update_survey_result_in_repo 
 
     count_a = self.surveys.where(incompleteReason: "A").count
     count_b = self.surveys.where(incompleteReason: "B").count

@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_09_24_181411) do
     t.string "cohort_name"
   end
 
-  create_table "repos_all", id: :bigint, default: nil, force: :cascade do |t|
+  create_table "repos_all", id: :bigint, default: -> { "nextval('repos_id_seq'::regclass)" }, force: :cascade do |t|
     t.bigint "github_repo_id"
     t.string "name"
     t.integer "forks_count"
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 2019_09_24_181411) do
     t.bigint "user_id"
     t.string "repo_name", limit: 255
     t.string "github_username", limit: 255
-    t.string "user_cohort_name", limit: 255
   end
 
   create_table "surveys", force: :cascade do |t|
@@ -66,10 +65,6 @@ ActiveRecord::Schema.define(version: 2019_09_24_181411) do
     t.string "issueType"
     t.string "problemAnalysis"
     t.string "suggestedFix"
-    t.string "github_username", limit: 255
-    t.string "master_repo", limit: 255
-    t.string "cohort_name", limit: 255
-    t.string "repo_name", limit: 255
   end
 
   create_table "users", force: :cascade do |t|

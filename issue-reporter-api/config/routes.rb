@@ -10,7 +10,5 @@ Rails.application.routes.draw do
   post '/login', to: 'auth#create'
   post '/signup', to: 'users#create'
   get '/profile', to: 'users#profile'
-  # get '/subset', to: 'repos#subset' 
-  # get '/cohort_repos', to: 'repos#cohort_repos' 
 
 end

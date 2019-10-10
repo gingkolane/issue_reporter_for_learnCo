@@ -36,7 +36,7 @@ class SurveysController < ApplicationController
   # DELETE /surveys/1
   def destroy
     @survey.destroy
-  end
+  ends
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -48,5 +48,7 @@ class SurveysController < ApplicationController
     def survey_params
       params.permit(:repos_user_id, :completion_status, :incompleteReason, :issueType, :problemAnalysis, :suggestedFix)
     end
+
+
 
 end

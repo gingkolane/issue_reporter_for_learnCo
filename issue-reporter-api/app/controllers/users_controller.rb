@@ -25,7 +25,6 @@ class UsersController < ApplicationController
     end
   end
 
-  
   def profile
     render json: current_user
   end

@@ -1,35 +1,19 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
-import { Dropdown, Menu, Image } from 'semantic-ui-react'
+import { Dropdown, Menu } from 'semantic-ui-react'
 import logo from '../assets/logo.svg'
 import search from '../assets/search.png'
 import friends from '../assets/friends.png'
 
-class TopNavContainer extends Component {
+export default class TopNavContainer extends Component {
 
   handleTopNavRepoClick = (e, data) => {
     this.props.handleTopNavRepoClick(data.id);
   }
 
-  move = (e, { value }) => {
-    this.props.history.push('/')
-  }
-
   render() {
-
     const displayOneRepoTitle = this.props.repos.slice(0,10).map(repo => 
-      <Dropdown.Item id={repo.id} key={repo.github_repo_id} onClick={this.handleTopNavRepoClick}> {repo.master_repo} </Dropdown.Item>
+      <Dropdown.Item id={repo.github_repo_id} key={repo.github_repo_id} onClick={this.handleTopNavRepoClick}> {repo.name} </Dropdown.Item>
     )
-
-    // trigger and options are variables for the dropdown menu showing avatar 
-    const trigger = (
-        <Image avatar src={this.props.currentUser.avatar_url} /> 
-    )
-    
-    const options = [
-      { key: 'sign-out', text: 'Sign Out', icon: 'sign out', value: '/' }
-    ]
 
     return (
       <Menu>
@@ -53,6 +37,9 @@ class TopNavContainer extends Component {
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Item>Assignments</Menu.Item>
+        {/* <Menu.Item as={ Link } to='tableau'>Analysis</Menu.Item> */}
+        {/* { as: Link, content: "About Us", key: "about", path:"/about"},
+        <Menu.Item as={ Link } name='profile' to='profile'></Menu.Item> */}
         <Menu.Item>Help</Menu.Item>
         <Menu.Menu position='right'>
 
@@ -72,22 +59,12 @@ class TopNavContainer extends Component {
             Karma {this.props.currentUser.karma}
           </Menu.Item>
 
-          {/* <Menu.Item name='user'>
+          <Menu.Item name='user'>
             <img src={this.props.currentUser.avatar_url} alt="avatar"/>
-          </Menu.Item> */}
-
-          <Dropdown
-            trigger={trigger}
-            options={options}
-            onChange={this.move}
-            pointing = 'top right'
-            className='link item'
-          />
-
+          </Menu.Item>
         </Menu.Menu>
+
       </Menu>
     )
   }
 }
-
-export default withRouter(TopNavContainer);
