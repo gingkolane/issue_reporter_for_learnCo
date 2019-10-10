@@ -9527,9 +9527,9 @@ tableau-api@^2.2.2:
   resolved "https://registry.yarnpkg.com/tableau-api/-/tableau-api-2.2.3.tgz#35e834ae605e67840a962edea07f587feb9a25c1"
   integrity sha512-GFJdndC3+oDp2+JtjFKjY1TLd9F0qjjw1MAd3nSo+t5vHOgxflTl4ns72EwMnoUXgTGksh5hifTS3gn6kbCXIg==
 
-"tableau-api@git+https://github.com/ilyabo/tableau-api.git":
+"tableau-api@https://github.com/ilyabo/tableau-api":
   version "2.0.0"
-  resolved "git+https://github.com/ilyabo/tableau-api.git#069f178bd634f77ae14e44fd32cf3fa8258f1866"
+  resolved "https://github.com/ilyabo/tableau-api#069f178bd634f77ae14e44fd32cf3fa8258f1866"
 
 tableau-react@^1.2.1:
   version "1.2.1"
