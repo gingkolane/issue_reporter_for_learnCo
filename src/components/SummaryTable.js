@@ -97,7 +97,7 @@ const columns = [
         //inline style of the cells below aggregate field
         Cell: row => <div style={{ textAlign: "center" }}>{row.value}</div>,
         sortAll: true,
-        filterAll: true
+        filterable: true
       },
 
       {
@@ -115,7 +115,7 @@ const columns = [
         //inline style of the cells below aggregate field
         Cell: row => <div style={{ textAlign: "center" }}>{row.value}</div>,
         sortable: false,
-        filterAll: true
+        filterable: false
       },
 
       {
