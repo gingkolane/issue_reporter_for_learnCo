@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react'
 import ReactTable from 'react-table';
-// import { makeData } from "./Utils";
 import "react-table/react-table.css";
-import { uniqWith, isEqual, sum, countBy, castArray } from "lodash";
-import classNames from "classnames";
+import { uniqWith, isEqual, countBy } from "lodash";
 import matchSorter from "match-sorter";
 
 
@@ -18,12 +15,12 @@ const columns = [
         headerStyle: {fontWeight: "bold"},
         width: 280,
         accessor: "master_repo",
-        // Pivot defines custom expander style(, and value to appear. 
+        // Pivot defines custom expander style, and value to appear. 
         // If don't specify Pivot, pivoted fields are displayed using default setting. Default value is row.value(count)
         Pivot: row => {
           return (
             <div>
-              <span className={classNames("rt-expander")}> &bull; </span>
+              <span className="rt-expander"> &bull; </span>
               <span>{row.value}</span>
             </div> 
         )},
@@ -38,37 +35,6 @@ const columns = [
     Header: "Lab Completion Data",
     headerStyle: {fontWeight: "bold"},
     columns: [
-      // { Header: "",
-      //   width: 35,
-      //   filterable: false,
-      //   resizable: false,
-      //   sortable: false,
-      //   // Aggregated: cellInfo => {
-      //   //   const needsExpander =
-      //   //     cellInfo.subRows && cellInfo.subRows.length > 1 ? true : false;
-      //   //   const expanderEnabled = !cellInfo.column.disableExpander;
-      //   //   return needsExpander && expanderEnabled ? (
-      //   //     <div
-      //   //       className={classNames("rt-expander", cellInfo.isExpanded && "-open")}
-      //   //     >
-      //   //       &bull;
-      //   //     </div>
-      //   //   ) : null;
-      //   // },
-      //   Aggregated: row => {
-      //   return  (
-      //   <div className={classNames("rt-expander")}
-      //   >
-      //   </div>
-      //   )
-      //   },
-      //     Cell: null
-      // },
-      
-      // { pivot: true },
-
-
-
       {
         Header: "Cohort name",
         headerStyle: {fontWeight: "bold"},
@@ -77,10 +43,8 @@ const columns = [
         aggregate: (values, rows) => uniqWith(values, isEqual).join(", "),
         Aggregated: row => <div style={{ textAlign: "center" }}>{row.value}</div>,
         Cell: cellInfo => null,
-        // Cell: row => <div style={{ textAlign: "center" }}>{row.value}</div>,
         filterAll: true,
         sortAll: true
-        
       },
 
       {
@@ -90,10 +54,9 @@ const columns = [
         aggregate: (values, rows) => uniqWith(values, isEqual).join(", "),
         // Add styling to aggregated field using inline styling
         Aggregated: row => <div style={{ textAlign: "center" }}>{row.value}</div>,
-        // Add styling to rows below aggregated field
-        // Cell: row => <div style={{ textAlign: "center" }}>{row.value}</div>,
         Cell: cellInfo => null,
-        sortAll: true
+        sortAll: true,
+        filterable: false
       },
 
       {
@@ -104,7 +67,8 @@ const columns = [
         // you can change the color of the text using inline style like so:
         Aggregated: row => <div style={{ textAlign: "center" }} >{row.value}</div>,
         Cell: cellInfo => null,
-        sortAll: true
+        sortAll: true,
+        filterable: false
       },
 
       {
@@ -114,7 +78,8 @@ const columns = [
         aggregate: (values, rows) => uniqWith(values, isEqual),
         Aggregated: row => <div style={{ textAlign: "center" }}>{row.value}</div>,
         Cell: cellInfo => null,
-        sortAll: true
+        sortAll: true,
+        filterable: false
       }
     ]
   },
@@ -123,7 +88,7 @@ const columns = [
   headerStyle: {fontWeight: "bold"},
     columns: [
       {
-        Header: "Survey count",
+        Header: "Survey users",
         headerStyle: {fontWeight: "bold"},
         accessor: "github_username",
         aggregate: (values, rows) => uniqWith(values, isEqual),
@@ -131,7 +96,8 @@ const columns = [
         Aggregated: row => <div style={{ textAlign: "center" }}>{row.value.length}</div>,
         //inline style of the cells below aggregate field
         Cell: row => <div style={{ textAlign: "center" }}>{row.value}</div>,
-        sortAll: true
+        sortAll: true,
+        filterAll: true
       },
 
       {
@@ -148,7 +114,8 @@ const columns = [
         },
         //inline style of the cells below aggregate field
         Cell: row => <div style={{ textAlign: "center" }}>{row.value}</div>,
-        sortable: false
+        sortable: false,
+        filterAll: true
       },
 
       {
@@ -158,7 +125,8 @@ const columns = [
         accessor: "problemAnalysis",
         aggregate: (values, rows) => uniqWith(values, isEqual),
         Aggregated: row => <span>{row.value}</span>,
-        sortable: false
+        sortable: false,
+        filterable: false
       },
 
       {
@@ -168,7 +136,8 @@ const columns = [
         accessor: "suggestedFix",
         aggregate: (values, rows) => uniqWith(values, isEqual),
         Aggregated: row => <span>{row.value}</span>,
-        sortable: false
+        sortable: false,
+        filterable: false
       }
     ]}
 ]
@@ -182,7 +151,7 @@ class SummaryTable extends Component {
   
     repos.map(repo => {
       const surveysOfRepo = this.props.surveys.filter(survey => survey.repo_name === repo.name)
-      surveysOfRepo.map(survey => {
+      return surveysOfRepo.map(survey => {
         const oneSurvey = {
           master_repo: repo.master_repo,
           cohort_name: repo.cohort_name,
@@ -194,7 +163,7 @@ class SummaryTable extends Component {
           suggestedFix: survey.suggestedFix,
           problemAnalysis: survey.problemAnalysis
         }
-        allSurveys.push(oneSurvey);
+        return allSurveys.push(oneSurvey);
       });
     })
     return allSurveys;
@@ -231,3 +200,40 @@ class SummaryTable extends Component {
 }
 
 export default SummaryTable;
+
+// Another way to makeData, using spread operator
+// makeData = (repos, surveys) => {
+
+//   const repoWithSurveys = repos.map(repo => {
+
+//     const surveysOfRepo = surveys.filter(survey => survey.repo_name === repo.name);
+
+//     return {...repo, surveysOfRepo}
+  
+//   })
+
+//   console.log(repoWithSurveys)
+//   return repoWithSurveys;
+
+// }
+
+// Another way to provide data, using this.props.repos, this.props.surveys
+      // <div>
+      //   <ReactTable
+      //     data={this.props.repos}
+      //     columns={columns}
+      //     // SubComponent={row.Original.children} 
+      //     defaultPageSize={10}
+
+      //     SubComponent={row => {
+      //       return (
+      //         <div>
+      //           <ReactTable
+      //             data={this.props.surveys}
+      //             columns={columnsInner}
+      //             showPagination=false
+      //           />
+      //         </div>
+      //       )}}
+      //     />
+      // </div>
