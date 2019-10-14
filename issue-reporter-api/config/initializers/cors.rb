@@ -7,8 +7,9 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    # origins '*'
     # put frontend url there
+    origins 'http://localhost:3000', 'https://issue-reporter-frontend.herokuapp.com/' #replace this url with that of your own heroku client app
 
     resource '*',
       headers: :any,
