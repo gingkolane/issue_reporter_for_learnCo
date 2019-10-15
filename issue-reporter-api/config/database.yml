@@ -75,11 +75,10 @@ test:
 #
 # You can use this database configuration with:
 #
-# production:
-#   url: <%= ENV['DATABASE_URL'] %>
-
-# production:
-#   <<: *default
+production:
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
+  # Below variables are defined in  DATABASE_URL already
   # database: issue-reporter-api_production
   # username: issue-reporter-api
   # password: <%= ENV['ISSUE-REPORTER-API_DATABASE_PASSWORD'] %>
