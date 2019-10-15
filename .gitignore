@@ -1,8 +1,9 @@
 *.rbc
 capybara-*.html
 .rspec
-./issue_reporter_api/log
-./issue_reporter_api/tmp
+# You can prepend a pattern with a double asterisk to match directories anywhere in the repository.
+**/log
+**/tmp
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /public/system
