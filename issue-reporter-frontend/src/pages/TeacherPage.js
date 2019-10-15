@@ -32,7 +32,7 @@ class TeacherPage extends Component {
       this.initViz() 
 
       //get surveys data
-      fetch("http://localhost:3000/surveys")
+      fetch("https://issue-reporter-api.herokuapp.com/surveys")
       .then(resp => resp.json())
       .then(surveys => this.setState({ surveys: surveys }))
 

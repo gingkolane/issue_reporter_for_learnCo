@@ -14,7 +14,7 @@ class SignupPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    fetch('http://localhost:3000/users', {
+    fetch('https://issue-reporter-api.herokuapp.com/users', {
       method: 'POST',
       headers: {
         'Content-Type':'application/json',
