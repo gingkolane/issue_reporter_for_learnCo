@@ -1,8 +1,8 @@
 *.rbc
 capybara-*.html
 .rspec
-/log
-/tmp
+./issue_reporter_api/log
+./issue_reporter_api/tmp
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /public/system
