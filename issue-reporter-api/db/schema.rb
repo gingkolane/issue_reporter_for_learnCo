@@ -15,11 +15,6 @@ ActiveRecord::Schema.define(version: 2019_09_24_181411) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cars", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "repos", id: :bigint, default: nil, force: :cascade do |t|
     t.bigint "github_repo_id"
     t.string "name"
@@ -34,23 +29,6 @@ ActiveRecord::Schema.define(version: 2019_09_24_181411) do
     t.string "cohort_name"
   end
 
-  create_table "repos_all", id: :bigint, default: nil, force: :cascade do |t|
-    t.bigint "github_repo_id"
-    t.string "name"
-    t.integer "forks_count"
-    t.integer "open_issues_count"
-    t.string "parent"
-    t.string "source"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "forks_url"
-    t.string "type"
-    t.string "reason_a"
-    t.string "reason_b"
-    t.string "reason_c"
-    t.string "reason_d"
-  end
-
   create_table "repos_users", force: :cascade do |t|
     t.bigint "repo_id"
     t.bigint "user_id"
@@ -59,7 +37,8 @@ ActiveRecord::Schema.define(version: 2019_09_24_181411) do
     t.string "user_cohort_name", limit: 255
   end
 
-  create_table "surveys", force: :cascade do |t|
+  create_table "surveys", id: false, force: :cascade do |t|
+    t.bigserial "id", null: false
     t.integer "repos_user_id"
     t.string "completion_status"
     t.string "incompleteReason"
