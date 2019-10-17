@@ -37,8 +37,7 @@ ActiveRecord::Schema.define(version: 2019_09_24_181411) do
     t.string "user_cohort_name", limit: 255
   end
 
-  create_table "surveys", id: false, force: :cascade do |t|
-    t.bigserial "id", null: false
+  create_table "surveys", force: :cascade do |t|
     t.integer "repos_user_id"
     t.string "completion_status"
     t.string "incompleteReason"
