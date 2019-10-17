@@ -21,7 +21,7 @@ class StudentPage extends Component {
     // .then(repos => this.setState({ repos: repos }))
 
     // get the default repo as the entry page repo
-    fetch(`/repos/89`)
+    fetch("https://issue-reporter-api.herokuapp.com/repos/89")
     .then(resp => resp.json())
     .then(repo => this.setState({ currentRepo: repo }))
   }
