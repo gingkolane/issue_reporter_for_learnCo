@@ -16,12 +16,12 @@ class StudentPage extends Component {
   componentDidMount () {
 
     // // take subset repos data, 10 repos for topNav
-    // fetch("https://issue-reporter-api.herokuapp.com/subset")
+    // fetch("/subset")
     // .then(resp => resp.json())
     // .then(repos => this.setState({ repos: repos }))
 
     // get the default repo as the entry page repo
-    fetch("https://issue-reporter-api.herokuapp.com/repos/89")
+    fetch("/repos/89")
     .then(resp => resp.json())
     .then(repo => this.setState({ currentRepo: repo }))
   }

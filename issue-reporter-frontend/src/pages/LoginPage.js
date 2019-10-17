@@ -22,7 +22,7 @@ class LoginPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    fetch('https://issue-reporter-api.herokuapp.com/login', {
+    fetch('/login', {
       method: 'POST',
       headers: {
         'Content-Type':'application/json',

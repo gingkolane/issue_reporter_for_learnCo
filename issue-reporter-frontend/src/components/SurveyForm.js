@@ -19,7 +19,7 @@ class SurveyForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     //creat joint table record, use this to create survey
-    fetch("https://issue-reporter-api.herokuapp.com/repos_users", {
+    fetch("/repos_users", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ class SurveyForm extends Component {
     })
 
     //post new survey to the database
-    fetch("https://issue-reporter-api.herokuapp.com/surveys", {
+    fetch("/surveys", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
