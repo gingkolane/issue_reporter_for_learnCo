@@ -32,7 +32,7 @@ class SurveyForm extends Component {
     }).then(res => res.json())
     .then(data => {
       this.setState({currentReposUser: data})
-    }).catch(console.log)
+    }).catch(error => alert(error))
 
     //post new survey to the database
     fetch("https://issue-reporter-api.herokuapp.com/surveys", {
@@ -49,7 +49,7 @@ class SurveyForm extends Component {
         problemAnalysis: this.state.problemAnalysis,
         suggestedFix: this.state.suggestedFix
       })
-    })    
+    }).catch(error => alert(error))  
  
     //Reward bug fixing effort with Karma
     if (this.state.suggestedFix !== '') {

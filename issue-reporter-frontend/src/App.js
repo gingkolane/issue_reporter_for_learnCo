@@ -50,7 +50,7 @@ class App extends Component {
     })
     .then(resp => resp.json())
     .then(user => this.setState({ currentUser: user}))
-    .catch(console.log)
+    .catch(error => alert(error))
   }
 
   render () {
