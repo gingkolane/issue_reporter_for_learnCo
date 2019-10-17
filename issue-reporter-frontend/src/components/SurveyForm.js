@@ -32,7 +32,7 @@ class SurveyForm extends Component {
     }).then(res => res.json())
     .then(data => {
       this.setState({currentReposUser: data})
-    })
+    }).catch(console.log)
 
     //post new survey to the database
     fetch("https://issue-reporter-api.herokuapp.com/surveys", {
