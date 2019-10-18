@@ -14,7 +14,7 @@ class App extends Component {
 
     if (localStorage.token) {
 
-      fetch('https://issue-reporter-api.herokuapp.com/profile', {
+      fetch('http://localhost:3000/profile', {
         headers: {
           Authorization: localStorage.token
         }
@@ -27,7 +27,7 @@ class App extends Component {
         })
 
       // take subset repos data
-      fetch("https://issue-reporter-api.herokuapp.com/repos")
+      fetch("http://localhost:3000/repos")
       .then(resp => resp.json())
       .then(repos => this.setState({ repos: repos }))
 
@@ -38,7 +38,7 @@ class App extends Component {
     let currentKarmaCount = parseInt(this.state.currentUser.karma);
     let updatedKarmaCount = currentKarmaCount + 1;
     
-    fetch(`https://issue-reporter-api.herokuapp.com/users/${this.state.currentUser.id}`, {
+    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, {
       method: 'PATCH', 
       headers: {
         'Content-Type': 'application/json',
