@@ -27,7 +27,9 @@ class SidBarRightContainer extends Component {
           positive = "true"
         > NEXT LESSON</Segment>
 
-          <Portal onClose={this.handleClose} open={open}>
+          <Portal onClose={this.handleClose} 
+            open={open}
+          >
             <Segment
               style={{
                 left: '20%',
@@ -40,7 +42,8 @@ class SidBarRightContainer extends Component {
               {/* <p>Please tell us why you did not complete this lab:</p> */}
               <SurveyForm
                 increaseKarmaCount={this.props.increaseKarmaCount} 
-                currentUser={this.props.currentUser} 
+                currentUser={this.props.currentUser}
+                myRepos={this.props.myRepos} 
                 currentRepo={this.props.currentRepo}
                 goToNextRepo={this.props.goToNextRepo}
                 handleClose={this.handleClose}

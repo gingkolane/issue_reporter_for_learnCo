@@ -14,11 +14,14 @@ class TopNavContainer extends Component {
 
   move = (e, { value }) => {
     this.props.history.push('/')
+    localStorage.clear()
   }
 
   render() {
 
-    const displayOneRepoTitle = this.props.repos.slice(0,10).map(repo => 
+    console.log("this.props.currentUser in topNavBar", this.props.currentUser)
+
+    const displayOneRepoTitle = this.props.myRepos.slice(0, 10).map(repo => 
       <Dropdown.Item id={repo.id} key={repo.github_repo_id} onClick={this.handleTopNavRepoClick}> {repo.master_repo} </Dropdown.Item>
     )
 

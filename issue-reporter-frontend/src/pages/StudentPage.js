@@ -7,60 +7,33 @@ import TopNavContainer from "../containers/TopNavContainer";
 
 class StudentPage extends Component {
 
-  state = {
-    // repos: [],
-    currentRepo: {}
-  }
-
-  // Logging in redirect to repo page, once repo page reloaded, get currentUser from localstorage token 
-  componentDidMount () {
-
-    // // take subset repos data, 10 repos for topNav
-    // fetch("http://localhost:3000/subset")
-    // .then(resp => resp.json())
-    // .then(repos => this.setState({ repos: repos }))
-
-    // get the default repo as the entry page repo
-    fetch("http://localhost:3000/repos/89")
-    .then(resp => resp.json())
-    .then(repo => this.setState({ currentRepo: repo }))
-
-  }
-
-  handleTopNavRepoClick = (repoid) => {
-    let clickedRepo = this.props.repos.find(repo => repo.id === repoid)
-    this.setState({ currentRepo: clickedRepo });
-  }
-
-  goToNextRepo = () => {
-    const idx = this.props.repos.indexOf(this.state.currentRepo) + 1
-    this.setState({
-      currentRepo: this.props.repos[idx]
-    })
-  }
-
   render() { 
     return ( 
       <>
         <TopNavContainer
-        repos={this.props.repos} //for curriculum dropdown
-        handleTopNavRepoClick={this.handleTopNavRepoClick}  // handle dropdown click
+        myRepos={this.props.myRepos} //for curriculum dropdown
+        handleTopNavRepoClick={this.props.handleTopNavRepoClick}  // handle dropdown click
         currentUser={this.props.currentUser}
+        currentRepo={this.props.currentRepo}
         />
 
         <Grid celled='internally'>
           <Grid.Row>
             <Grid.Column width={13}>
-              <RepoContainer currentRepo={this.state.currentRepo} />
+              <RepoContainer 
+              currentRepo={this.props.currentRepo} 
+              // currentmyRepoSelected={this.state.currentmyRepoSelected}
+              />
             </Grid.Column>
 
             <Grid.Column width={3}>
               <SideBarRightContainer
                 increaseKarmaCount = {this.props.increaseKarmaCount}
-                currentRepo={this.state.currentRepo} 
+                currentRepo={this.props.currentRepo} 
                 currentUser={this.props.currentUser} 
+                myRepos={this.props.myRepos}
                 history={this.props.history}
-                goToNextRepo={this.goToNextRepo}
+                goToNextRepo={this.props.goToNextRepo}
               />
             </Grid.Column>
           </Grid.Row>
