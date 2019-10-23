@@ -13,7 +13,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-table": "^6.10.3",
-    "semantic-ui-react": "^0.87.3",
+    "semantic-ui-react": "^0.88.1",
     "tableau-api": "^2.2.2",
     "tableau-react": "^1.2.1",
     "typescript": "^3.6.2"
