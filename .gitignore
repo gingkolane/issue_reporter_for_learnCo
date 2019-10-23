@@ -16,3 +16,4 @@ steps.md
 deploysteps.md
 issue-reporter-api/tmp/cache/bootsnap-load-path-cache
 issue-reporter-api/log/development.log
+/old-files/
