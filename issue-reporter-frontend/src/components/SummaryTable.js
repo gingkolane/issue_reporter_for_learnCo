@@ -40,6 +40,7 @@ const columns = [
         headerStyle: {fontWeight: "bold"},
         width: 160,
         accessor: "cohort_name",
+        //what does this do? Need to write down comment as soon as possible
         aggregate: (values, rows) => uniqWith(values, isEqual).join(", "),
         Aggregated: row => <div style={{ textAlign: "center" }}>{row.value}</div>,
         Cell: cellInfo => null,
@@ -144,11 +145,28 @@ const columns = [
 
 class SummaryTable extends Component {
 
+  // state = {
+  //   hardRepos: [], 
+  //   surveys: []
+  // }
+
+  // componentDidMount(){
+  //   fetch('http://localhost:3000/repos')
+  //   .then(res => res.json())
+  //   .then(repos => {
+  //     this.setState({ hardRepos: repos})
+  //   })
+
+  //   //get surveys data
+  //   fetch("http://localhost:3000/surveys")
+  //   .then(resp => resp.json())
+  //   .then(surveys => this.setState({ surveys: surveys }))
+  // }
+
 // define the data that goes into the table
   makeData = (repos, surveys) => {
   
     let allSurveys = [];
-  
     repos.map(repo => {
       const surveysOfRepo = this.props.surveys.filter(survey => survey.repo_name === repo.name)
       return surveysOfRepo.map(survey => {
@@ -171,8 +189,8 @@ class SummaryTable extends Component {
 
   render() {
 
-  const data = this.makeData(this.props.repos, this.props.surveys)
-
+  const data = this.makeData(this.props.hardRepos, this.props.surveys)
+  
   return (
     <>
     <div>

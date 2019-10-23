@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
-import tableau from 'tableau-api'; 
+import {tableau} from 'tableau-api'; 
 import TopNavContainerTeacher from "../containers/TopNavContainerTeacher";
 import { Grid, Divider } from 'semantic-ui-react'
+import SummaryTable from "../components/SummaryTable"
 // import GraphicsContainer from "./containers/GraphicsContainer";
-import SummaryTable from "../components/SummaryTable";
 // import SurveyResultsTable from './components/SurveyResultsTable';
-
-
 
 class TeacherPage extends Component {
 
   state = {
-    surveys:[]
-    // users:[],
-    // selectedRepo: {},
-    // surveysOfSelectedRepo: []
+    surveys:[], 
+    hardRepos: []
   }
 
-  handleTableRepoClick = (repoid) => {
-    let clickedRepo = this.props.repos.find(repo => repo.id === repoid)
-    let surveysForClickedRepo = this.props.surveys.filter(survey => survey.repo_id === repoid)
-    this.setState({ selectedRepo: clickedRepo });
-    this.setState({ surveysOfSelectedRepo: surveysForClickedRepo });
-  }
+  // handleTableRepoClick = (repoid) => {
+  //   let clickedRepo = this.props.repos.find(repo => repo.id === repoid)
+  //   let surveysForClickedRepo = this.props.surveys.filter(survey => survey.repo_id === repoid)
+  //   this.setState({ selectedRepo: clickedRepo });
+  //   this.setState({ surveysOfSelectedRepo: surveysForClickedRepo });
+  // }
 
   componentDidMount() {
     if (!localStorage.token) {
@@ -36,6 +32,11 @@ class TeacherPage extends Component {
       .then(resp => resp.json())
       .then(surveys => this.setState({ surveys: surveys }))
 
+      fetch('http://localhost:3000/repos')
+      .then(res => res.json())
+      .then(repos => {
+        this.setState({ hardRepos: repos})
+      })
     }
   }
   
@@ -46,7 +47,6 @@ class TeacherPage extends Component {
   }  
   
   render() {  
-    console.log("teacherPage", this.props, this.state)
     return (  
       <>
         <TopNavContainerTeacher
@@ -69,11 +69,14 @@ class TeacherPage extends Component {
           <Divider />
 
           <Grid.Column width={16}>
+            <p>Table below shows study labs with less than 50% completion rate from the dumbo-web-051319 student cohorts. 
+            </p>
+          </Grid.Column>
+
+          <Grid.Column width={16}>
             <SummaryTable
-            repos={this.props.repos} 
-            surveys={this.state.surveys}
-            // handleTableRepoClick={this.handleTableRepoClick}
-            // selectedRepo={this.state.selectedRepo}
+              hardRepos={this.state.hardRepos} 
+              surveys={this.state.surveys}
             />
           </Grid.Column>
 

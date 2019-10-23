@@ -19,8 +19,6 @@ class TopNavContainer extends Component {
 
   render() {
 
-    console.log("this.props.currentUser in topNavBar", this.props.currentUser)
-
     const displayOneRepoTitle = this.props.myRepos.slice(0, 10).map(repo => 
       <Dropdown.Item id={repo.id} key={repo.github_repo_id} onClick={this.handleTopNavRepoClick}> {repo.master_repo} </Dropdown.Item>
     )

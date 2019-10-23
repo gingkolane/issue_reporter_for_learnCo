@@ -7,9 +7,9 @@ import friends from '../assets/friends.png'
 
 class TopNavContainerTeacher extends Component {
 
-  move = (e, { value }) => {
-    this.props.history.push('/')
-  }
+  // move = (e, { value }) => {
+  //   this.props.history.push('/')
+  // }
 
   render() {
 
@@ -56,7 +56,8 @@ class TopNavContainerTeacher extends Component {
           <Dropdown
             trigger={trigger}
             options={options}
-            onChange={this.move}
+            // onChange={this.move}
+            onClick = {this.move}
             pointing = 'top right'
             className='link item'
           />
