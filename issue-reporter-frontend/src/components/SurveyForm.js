@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
-import { withRouter } from 'react-router-dom';
 
 class SurveyForm extends Component {
   
   state = {
-    currentReposUser: {},
+    reposUser: {},
+    repos_user_id: null, 
     completion_status:'',
     incompleteReason:'',
     issueType:'',
@@ -13,13 +13,9 @@ class SurveyForm extends Component {
     suggestedFix:''
    }
 
-  //semantic ui onClick comes with data that includes all the props
-  handleChange = (e, data) => this.setState({ [data.name]: data.value })
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    //creat joint table record, use this to create survey
-    fetch('http://localhost:3000/repos_users', {
+  componentDidMount () {
+    // find reposUser using currentRepo and currentUser
+    fetch('http://localhost:3000/repos_users/find_repos_user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -30,27 +26,44 @@ class SurveyForm extends Component {
         user_id: this.props.currentUser.id
       })
     }).then(res => res.json())
-    .then(data => {
-      this.setState({currentReposUser: data})
-    }).catch(error => alert(error))
+    .then(reposUser => {
+      if (reposUser) {
+        this.setState({reposUser: reposUser})
+      }
+      else {
+        return "don't have a reposUser yet"
+      }
+    })
+  }
+  
+  //semantic ui onClick comes with data that includes all the props
+  handleChange = (e, data) => this.setState({ [data.name]: data.value })
 
-    //post new survey to the database
-    fetch('http://localhost:3000/surveys', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accepted': 'application/json'
-      },
-      body: JSON.stringify({ 
-        repos_user_id: this.state.currentReposUser.id,
-        completion_status: 0,
-        incompleteReason: this.state.incompleteReason,
-        issueType: this.state.issueType,
-        problemAnalysis: this.state.problemAnalysis,
-        suggestedFix: this.state.suggestedFix
-      })
-    }).catch(error => alert(error))  
- 
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    //if reposUser exist, post new survey to the database
+    if (this.state.reposUser) {
+      fetch('http://localhost:3000/surveys', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accepted': 'application/json'
+        },
+        body: JSON.stringify({ 
+          repos_user_id: this.state.reposUser.id,
+          completion_status: 0,
+          incompleteReason: this.state.incompleteReason,
+          issueType: this.state.issueType,
+          problemAnalysis: this.state.problemAnalysis,
+          suggestedFix: this.state.suggestedFix
+        })
+      }).catch(error => alert(error))  
+    } 
+    else {
+      alert ("This user has not forked this repo")
+    }
+
     //Reward bug fixing effort with Karma
     if (this.state.suggestedFix !== '') {
 
@@ -130,5 +143,5 @@ class SurveyForm extends Component {
     );
   }
 }
- 
-export default withRouter(SurveyForm);
+
+export default SurveyForm
