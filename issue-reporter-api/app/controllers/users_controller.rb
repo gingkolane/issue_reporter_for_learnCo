@@ -3,18 +3,17 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
-
-    render json: @users
+    users = User.all
+    render json: users
   end
 
   # GET /users/1
   def show
-    render json: @user
+    user = User.find(params[:id])
+    render json: user
   end
 
   # POST /users
-
   def create
     user = User.create(user_params)
 
@@ -25,9 +24,16 @@ class UsersController < ApplicationController
     end
   end
 
+  # def profile
+  #   render json: current_user
+  # end 
   
   def profile
-    render json: current_user
+    # current_user was defined in ApplicationController
+    # user_id = decoded_token[0]["user_id"]
+    # current_user = User.find(user_id)
+    current_user_repos = current_user.repos
+    render json: { user: current_user, repos: current_user_repos }
   end
 
   # PATCH/PUT /users/1
