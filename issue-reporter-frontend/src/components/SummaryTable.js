@@ -151,14 +151,14 @@ class SummaryTable extends Component {
   // }
 
   // componentDidMount(){
-  //   fetch('http://localhost:3000/repos')
+  //   fetch(`${process.env.REACT_APP_API_URL}/repos`)
   //   .then(res => res.json())
   //   .then(repos => {
   //     this.setState({ hardRepos: repos})
   //   })
 
   //   //get surveys data
-  //   fetch("http://localhost:3000/surveys")
+  //   fetch(`${process.env.REACT_APP_API_URL}/surveys`)
   //   .then(resp => resp.json())
   //   .then(surveys => this.setState({ surveys: surveys }))
   // }

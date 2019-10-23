@@ -15,7 +15,7 @@ class SurveyForm extends Component {
 
   componentDidMount () {
     // find reposUser using currentRepo and currentUser
-    fetch('http://localhost:3000/repos_users/find_repos_user', {
+    fetch(`${process.env.REACT_APP_API_URL}/repos_users/find_repos_user`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ class SurveyForm extends Component {
 
     //if reposUser exist, post new survey to the database
     if (this.state.reposUser) {
-      fetch('http://localhost:3000/surveys', {
+      fetch(`${process.env.REACT_APP_API_URL}/surveys`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

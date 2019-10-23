@@ -16,7 +16,7 @@ class App extends Component {
 
     if (localStorage.token) {
       // fetch logged-in user and its myRepos data, the profile route has set to render both user and its myRepos in json )
-      fetch('http://localhost:3000/profile', {
+      fetch(`${process.env.REACT_APP_API_URL}/profile`, {
         headers: {
           Authorization: localStorage.token
         }
@@ -52,7 +52,7 @@ class App extends Component {
     let currentKarmaCount = parseInt(this.state.currentUser.karma);
     let updatedKarmaCount = currentKarmaCount + 1;
     
-    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/users/${this.state.currentUser.id}`, {
       method: 'PATCH', 
       headers: {
         'Content-Type': 'application/json',
