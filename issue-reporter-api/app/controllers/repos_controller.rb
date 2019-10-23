@@ -2,10 +2,9 @@ class ReposController < ApplicationController
 
   # GET /repos
   def index   
-    # take repos with less than 50% completion and of cohort 042219 and 051319
-    cohort_repos = Repo.where(cohort_name: "dumbo-web-051319").or(Repo.where(cohort_name: "dumbo-web-career-042219"))
-    # Todo: can I use select to do this?
-    
+    # take repos with less than 50% completion and of cohort 051319
+    cohort_repos = Repo.where(cohort_name: "dumbo-web-051319")
+    # Within cohort_repos, filter only percent_completion less than 50
     filtered_repos = cohort_repos.filter{|repo| repo.percent_completion < 50 }
     
     render json: filtered_repos
