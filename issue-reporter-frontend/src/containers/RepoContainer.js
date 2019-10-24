@@ -30,18 +30,19 @@ class RepoContainer extends Component {
   
     <h4>Student page:</h4>
     <ul>
-    <li>A user can browse through the web app with a navigation bar. </li>
+    <li>On login, a student avartar shows up, and this student's forked repos are updated on the top Nav. </li>
+    <li>The user can select a study lab from the top nav under "React Labs". </li>
     <li>The user can select a lab from the top nav bar, which shows up in the the main area.</li>
     <li>
-    On clicking the next lesson on the right side nav bar, the student user will be prompted to a survey form.
+    On clicking the "Next lesson" on the right side nav bar, the student user will be prompted to a survey form. 
     </li>
     <li>
     The user can answer and submit the survey.
     </li>
     <li>
     If the user provides a fix to the reported issue, they are awarded a karma point, which is reflected on the top nav.
-    The survey and karma are updated in the database.
     </li>
+    <li>The survey and karma are updated in the database.</li>
     </ul>
   
   
@@ -51,14 +52,14 @@ class RepoContainer extends Component {
     Once logged in, the user is presented with a dashboard showing analysis of lab completion data.
     </li>
     <li>
-    The user can use filters to interact with different graphs on the dashboard
+    Completion and survey data of study labs with less than 50% completion rate are detailed in the table below the data analytics graphics
     </li>
     <li>
-    The user can user the top navigation to get to the student view of the platform
+    User can click to expand an repository and see the survey of each student submission
     </li>
-    The issues are proritized based on how many students can complete the labs, and helps the engineering team to prioritize tasks; students' allows quick fixes to these problems.
-    The issues will be automatically reported to the perspective github repo. 
-  
+    <li> The user can use the top nav to navigate to the student view of the platform </li>
+    
+
     </ul>
   
     <h4>Built With:</h4>
@@ -88,6 +89,10 @@ class RepoContainer extends Component {
   
     <li>
     Tableau/Tableau-react - data visualization
+    </li>
+
+    <li>
+    React-table package - a lightweight, fast and extendable datagrid built for React
     </li>
   
     </ul>
