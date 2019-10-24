@@ -7,9 +7,10 @@ import friends from '../assets/friends.png'
 
 class TopNavContainerTeacher extends Component {
 
-  // move = (e, { value }) => {
-  //   this.props.history.push('/')
-  // }
+  move = (e, { value }) => {
+    this.props.history.push('/')
+    localStorage.clear()
+  }
 
   render() {
 
