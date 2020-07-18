@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "d3": "^5.9.7",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "match-sorter": "^4.0.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
